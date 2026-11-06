@@ -1,114 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rianna Ngaseo | Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --bg: #090912;
+    --card: rgba(255,255,255,.06);
+    --card-border: rgba(255,255,255,.12);
+    --text: #f2f2f7;
+    --muted: #a6a6bb;
+    --accent: #8b7bff;
+    --accent2: #3ee0c3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---- No scrolling anywhere ---- */
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background:
+      radial-gradient(ellipse at 8% 18%, rgba(119, 103, 204, .43) 0%, rgba(70, 62, 125, .22) 27%, transparent 52%),
+      radial-gradient(ellipse at 88% 82%, rgba(55, 184, 157, .34) 0%, rgba(36, 105, 100, .18) 27%, transparent 50%),
+      radial-gradient(ellipse at 54% 58%, rgba(84, 54, 105, .12) 0%, transparent 42%),
+      #090912;
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  body { position: fixed; inset: 0; width: 100%; }
+
+  /* ---- Animated background ---- */
+  #bg { position: fixed; inset: 0; z-index: 0; }
+  .orb {
+    position: fixed; z-index: 0; border-radius: 50%;
+    filter: blur(80px); opacity: .35; pointer-events: none;
+  }
+  .orb.o1 { width: 58vmax; height: 58vmax; background: #7868c8; top: -20vmax; left: -24vmax; opacity: .22; filter: blur(105px); animation: drift1 30s ease-in-out infinite alternate; }
+  .orb.o2 { width: 52vmax; height: 52vmax; background: #43c6ad; bottom: -24vmax; right: -18vmax; opacity: .20; filter: blur(110px); animation: drift2 34s ease-in-out infinite alternate; }
+  .orb.o3 { width: 30vmax; height: 30vmax; background: #62518e; top: 38%; left: 43%; opacity: .08; filter: blur(115px); animation: drift3 38s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(18vmax, 14vmax) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(-20vmax, -12vmax) scale(1.2); } }
+  @keyframes drift3 { to { transform: translate(-25vmax, 10vmax) scale(.8); } }
+
+  /* ---- Layout ---- */
+  .app {
+    position: relative; z-index: 1;
+    height: 100%; width: 100%;
+    display: flex; flex-direction: column;
+    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+  }
+  nav {
+    display: flex; justify-content: center; gap: .25rem; flex-wrap: wrap;
+    padding: clamp(.5rem, 1.6vh, 1rem) 1rem;
+  }
+  nav button {
+    background: transparent; border: 1px solid transparent; color: var(--muted);
+    font: inherit; font-size: clamp(.75rem, 1.5vw, .95rem);
+    padding: .45rem .9rem; border-radius: 999px; cursor: pointer;
+    transition: color .2s, background .2s, border-color .2s;
+  }
+  nav button:hover { color: var(--text); }
+  nav button.active {
+    color: var(--text); background: var(--card); border-color: var(--card-border);
+    backdrop-filter: blur(8px);
+  }
+
+  main { position: relative; flex: 1; min-height: 0; }
+  section {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 0 clamp(1rem, 5vw, 4rem) clamp(.5rem, 2vh, 1.5rem);
+    opacity: 0; visibility: hidden; transform: translateY(18px) scale(.985);
+    transition: opacity .5s ease, transform .5s ease, visibility 0s .5s;
+    overflow: hidden;
+  }
+  section.active {
+    opacity: 1; visibility: visible; transform: none;
+    transition: opacity .5s ease, transform .5s ease, visibility 0s;
+  }
+  h2 {
+    font-size: clamp(1.4rem, 4.5vh, 2.4rem); margin-bottom: clamp(.6rem, 2vh, 1.4rem);
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .glass {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 18px; backdrop-filter: blur(10px);
+  }
+
+  /* ---- Home ---- */
+  .hero { display: flex; align-items: center; gap: clamp(1.2rem, 5vw, 3.5rem); max-width: 900px; width: 100%; }
+  .portrait {
+    flex: none; width: clamp(110px, 30vh, 280px); aspect-ratio: 1; border-radius: 50%;
+    padding: 5px; background: conic-gradient(from 0deg, var(--accent), var(--accent2), #ff6fb5, var(--accent));
+    animation: spin 8s linear infinite;
+  }
+  .portrait .inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #15151f; overflow: hidden;
+    display: grid; place-items: center; animation: spin 8s linear infinite reverse;
+    font-size: 3rem; font-weight: 700; color: var(--accent);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero small { color: var(--muted); font-size: clamp(.85rem, 2vh, 1.1rem); }
+  .hero h1 { font-size: clamp(2rem, 8vh, 4.4rem); line-height: 1.05; margin: .2rem 0 .8rem; }
+  .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--muted); font-size: clamp(.9rem, 2.2vh, 1.15rem); max-width: 34ch; }
+  .hero p strong { color: var(--text); }
+  .cta { display: flex; gap: .7rem; margin-top: clamp(.8rem, 2.5vh, 1.5rem); flex-wrap: wrap; }
+  .btn {
+    border: 1px solid var(--card-border); background: var(--card); color: var(--text);
+    padding: .6rem 1.2rem; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
+    transition: transform .2s, background .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #0b0b14; border: none; font-weight: 600; }
+
+  /* ---- About ---- */
+  .about { max-width: 760px; width: 100%; }
+  .about p { color: var(--muted); line-height: 1.55; font-size: clamp(.85rem, 2vh, 1.05rem); margin-bottom: .7rem; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .7rem; margin-top: clamp(.5rem, 2vh, 1rem); }
+  .fact { padding: .8rem 1rem; }
+  .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .2rem; }
+  .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
+
+  /* ---- Education ---- */
+  .timeline {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem;
+    max-width: 860px; width: 100%; counter-reset: step;
+  }
+  .step { padding: .6rem .9rem .6rem 2.6rem; position: relative; counter-increment: step; }
+  .step::before {
+    content: counter(step); position: absolute; left: .7rem; top: .7rem;
+    width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center;
+    font-size: .72rem; font-weight: 700; color: #0b0b14;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+  }
+  .step h3 { font-size: clamp(.78rem, 1.9vh, 1rem); }
+  .step p { font-size: clamp(.68rem, 1.6vh, .85rem); color: var(--muted); }
+  .step.last { grid-column: 1 / -1; }
+
+  /* ---- Achievements / Family ---- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
+  .card { padding: clamp(1rem, 3vh, 1.6rem); transition: transform .25s, border-color .25s; }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card .icon { font-size: clamp(1.4rem, 4vh, 2rem); margin-bottom: .4rem; }
+  .card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .3rem; }
+  .card p { color: var(--muted); font-size: clamp(.8rem, 1.9vh, .95rem); line-height: 1.5; }
+  .note { color: var(--muted); margin-top: 1rem; font-size: .95rem; }
+
+  /* ---- Contact ---- */
+  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
+  .links a { text-decoration: none; color: inherit; display: block; padding: clamp(1rem, 3vh, 1.5rem); transition: transform .25s, border-color .25s; }
+  .links a:hover { transform: translateY(-4px); border-color: var(--accent2); }
+  .links b { display: block; margin-bottom: .25rem; }
+  .links span { color: var(--muted); font-size: .85rem; word-break: break-all; }
+  footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
+  .pager { display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .4rem 1rem; }
+  .pager #count { color: var(--muted); font-size: .85rem; min-width: 3.5rem; text-align: center; }
+  .pager .btn:disabled { opacity: .35; cursor: default; transform: none; }
+
+  /* ---- Small screens ---- */
+  @media (max-width: 640px) {
+    .hero { flex-direction: column; text-align: center; gap: 1rem; }
+    .hero p { margin: 0 auto; }
+    .cta { justify-content: center; }
+    .timeline { gap: .4rem; }
+    .step { padding: .45rem .5rem .45rem 2.1rem; }
+    .step::before { left: .45rem; top: .5rem; width: 1.2rem; height: 1.2rem; font-size: .65rem; }
+    .step h3 { font-size: .72rem; }
+    .step p { font-size: .62rem; }
+    .cards, .links { grid-template-columns: 1fr; gap: .6rem; }
+  }
+  @media (max-height: 520px) and (orientation: landscape) {
+    .hero { gap: 1.5rem; }
+    footer { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orb, .portrait, .portrait .inner { animation: none; }
+    section { transition: opacity .2s; transform: none; }
+  }
+</style>
 </head>
 <body>
-<nav aria-label="Main">
-  <a href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a><a href="#achievements">Achievements</a><a href="#family">Family</a><a href="#social">Contact</a>
-</nav>
-<main>
-  <section class="hero" id="home">
-    <div class="photo"><img src="portrait.jpg" alt="Portrait of Rianna Ngaseo in a black blazer" width="480" height="504"></div>
-    <div class="hero-text">
-    <p class="hi">Hi, I’m</p>
-    <h1>Rianna<span>Ngaseo</span></h1>
-    <p class="lead">An <b id="typed">IT student</b> at the University of the Cordilleras, learning to build things for the web.</p>
-    <div class="btns">
-      <a class="btn main" href="#about">About me</a>
-      <a class="btn ghost" href="#social">Get in touch</a>
-    </div>
-    </div>
-  </section>
 
-  <section id="about">
-    <h2>About me</h2>
-    <div class="about">
-      <div>
+<canvas id="bg"></canvas>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<div class="app">
+  <nav id="nav">
+    <button data-go="home" class="active">Home</button>
+    <button data-go="about">About</button>
+    <button data-go="education">Education</button>
+    <button data-go="achievements">Achievements</button>
+    <button data-go="family">Family</button>
+    <button data-go="contact">Contact</button>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="active">
+      <div class="hero">
+        <div class="portrait"><div class="inner">
+          <img src="https://www.yanangaseo.citcs.site/portrait.jpg" alt="Portrait of Rianna Ngaseo in a black blazer" onerror="this.replaceWith(document.createTextNode('RN'))">
+        </div></div>
+        <div>
+          <small>Hi, I’m</small>
+          <h1>Rianna <span>Ngaseo</span></h1>
+          <p>An <strong>IT student</strong> at the University of the Cordilleras, learning to build things for the web.</p>
+          <div class="cta">
+            <button class="btn primary" data-go="about">About me</button>
+            <button class="btn" data-go="contact">Get in touch</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about">
+        <h2>About me</h2>
         <p>I’m Rianna Ngaseo, an Information Technology student at the University of the Cordilleras. I’m the only child of my parents, and I enjoy learning new things about computers and technology.</p>
         <p>This page is my little corner of the internet where you can learn about my background, my school journey, and how to reach me.</p>
+        <div class="facts">
+          <div class="fact glass"><b>Name</b><span>Rianna Ngaseo</span></div>
+          <div class="fact glass"><b>Birthday</b><span>October 17, 2008</span></div>
+          <div class="fact glass"><b>Age</b><span>18</span></div>
+          <div class="fact glass"><b>Course</b><span>Information Technology</span></div>
+          <div class="fact glass"><b>School</b><span>University of the Cordilleras</span></div>
+        </div>
       </div>
-      <ul class="facts">
-        <li><b>Name</b><span>Rianna Ngaseo</span></li>
-        <li><b>Birthday</b><span>October 17, 2008</span></li>
-        <li><b>Age</b><span id="age">18</span></li>
-        <li><b>Course</b><span>Information Technology</span></li>
-        <li><b>School</b><span>University of the Cordilleras</span></li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <ol class="timeline">
-      <li>
-        <h3>Mogao Elementary School</h3>
-        <div class="meta">Grades 1 to 3</div>
-      </li>
-      <li>
-        <h3>Colalo Elementary School</h3>
-        <div class="meta">Grade 4</div>
-      </li>
-      <li>
-        <h3>Am-am Elementary School</h3>
-        <div class="meta">Grade 5</div>
-      </li>
-      <li>
-        <h3>Colalo Elementary School</h3>
-        <div class="meta">Grade 6</div>
-        <p class="sub">Went back to Colalo and graduated here.</p>
-      </li>
-      <li>
-        <h3>Mankayan National High School</h3>
-        <div class="meta">Junior High School</div>
-        <p class="sub">Graduated.</p>
-      </li>
-      <li>
-        <h3>Mankayan National High School</h3>
-        <div class="meta">Senior High School</div>
-        <p class="sub">Graduated as an honor student.</p>
-      </li>
-      <li>
-        <h3>University of the Cordilleras</h3>
-        <div class="meta">College, Information Technology</div>
-        <p class="sub">Currently studying.</p>
-      </li>
-    </ol>
-  </section>
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="step glass"><h3>Mogao Elementary School</h3><p>Grades 1 to 3</p></div>
+        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 4</p></div>
+        <div class="step glass"><h3>Am-am Elementary School</h3><p>Grade 5</p></div>
+        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 6 · Went back and graduated here</p></div>
+        <div class="step glass"><h3>Mankayan National High School</h3><p>Junior High · Graduated</p></div>
+        <div class="step glass"><h3>Mankayan National High School</h3><p>Senior High · Graduated as an honor student</p></div>
+        <div class="step glass last"><h3>University of the Cordilleras</h3><p>College, Information Technology · Currently studying</p></div>
+      </div>
+    </section>
 
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <div class="grid">
-      <div class="card"><h3>Math quiz participant</h3><p>In elementary, I joined a math quiz competition for elementary students.</p></div>
-      <div class="card"><h3>Honor student</h3><p>In Senior High School at Mankayan National High School, I was an honor student.</p></div>
-    </div>
-  </section>
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <h2>Achievements</h2>
+      <div class="cards">
+        <div class="card glass"><div class="icon">🧮</div><h3>Math quiz participant</h3><p>In elementary, I joined a math quiz competition for elementary students.</p></div>
+        <div class="card glass"><div class="icon">🎓</div><h3>Honor student</h3><p>In Senior High School at Mankayan National High School, I was an honor student.</p></div>
+      </div>
+    </section>
 
-  <section id="family">
-    <h2>Family</h2>
-    <div class="grid">
-      <div class="card"><h3>Amy Rica Ngaseo</h3><p>Mother</p></div>
-      <div class="card"><h3>Reborido Ngaseo</h3><p>Father</p></div>
-    </div>
-    <p style="color:var(--muted);margin-top:1rem">I am their only child.</p>
-  </section>
+    <!-- FAMILY -->
+    <section id="family">
+      <h2>Family</h2>
+      <div class="cards">
+        <div class="card glass"><div class="icon">💜</div><h3>Amy Rica Ngaseo</h3><p>Mother</p></div>
+        <div class="card glass"><div class="icon">💙</div><h3>Reborido Ngaseo</h3><p>Father</p></div>
+      </div>
+      <p class="note">I am their only child.</p>
+    </section>
 
-  <section id="social" class="social">
-    <h2>Social and contact</h2>
-    <div class="grid">
-      <a class="card" href="https://www.facebook.com/share/1LxtsNfTrg/" target="_blank" rel="noopener"><h3>Facebook</h3><small>Visit my Facebook</small></a>
-      <a class="card" href="https://www.instagram.com/_yanaaa._irl?obrf=MmE2eGx1YXc0cm82" target="_blank" rel="noopener"><h3>Instagram</h3><small>@_yanaaa._irl</small></a>
-      <a class="card" href="mailto:yanangaseo0@gmail.com"><h3>Email</h3><small>yanangaseo0@gmail.com</small></a>
-    </div>
-  </section>
-</main>
-<footer>© <span id="yr">2026</span> Rianna Ngaseo. All rights reserved.</footer>
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Social and contact</h2>
+      <div class="links">
+        <a class="glass" href="https://www.facebook.com/share/1LxtsNfTrg/" target="_blank" rel="noopener"><b>Facebook</b><span>Visit my Facebook</span></a>
+        <a class="glass" href="https://www.instagram.com/_yanaaa._irl?obrf=MmE2eGx1YXc0cm82" target="_blank" rel="noopener"><b>Instagram</b><span>@_yanaaa._irl</span></a>
+        <a class="glass" href="mailto:yanangaseo0@gmail.com"><b>Email</b><span>yanangaseo0@gmail.com</span></a>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+  </main>
+
+  <div class="pager">
+    <button class="btn" id="prev">← Previous</button>
+    <span id="count">1 / 6</span>
+    <button class="btn primary" id="next">Next →</button>
+  </div>
+  <footer>© 2026 Rianna Ngaseo. All rights reserved.</footer>
+</div>
+
+<script>
+/* ---------- Page switching (no scrolling) ---------- */
+const order = ['home','about','education','achievements','family','contact'];
+const sections = Object.fromEntries(order.map(id => [id, document.getElementById(id)]));
+const navBtns = [...document.querySelectorAll('#nav button')];
+
+function go(id, push = true) {
+  if (!sections[id]) id = 'home';
+  order.forEach(k => sections[k].classList.toggle('active', k === id));
+  navBtns.forEach(b => b.classList.toggle('active', b.dataset.go === id));
+  if (push) history.replaceState(null, '', '#' + id);
+  const i = order.indexOf(id);
+  document.getElementById('prev').disabled = i === 0;
+  document.getElementById('next').disabled = i === order.length - 1;
+  document.getElementById('count').textContent = (i + 1) + ' / ' + order.length;
+}
+document.getElementById('prev').addEventListener('click', () => step(-1));
+document.getElementById('next').addEventListener('click', () => step(1));
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-go]');
+  if (t) go(t.dataset.go);
+});
+function current() { return order.find(k => sections[k].classList.contains('active')); }
+function step(d) {
+  const i = order.indexOf(current());
+  go(order[Math.min(order.length - 1, Math.max(0, i + d))]);
+}
+addEventListener('keydown', e => {
+  if (['ArrowRight','ArrowDown','PageDown'].includes(e.key)) step(1);
+  if (['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) step(-1);
+});
+let wheelLock = false;
+addEventListener('wheel', e => {
+  e.preventDefault();
+  if (wheelLock || Math.abs(e.deltaY) < 20) return;
+  wheelLock = true; step(e.deltaY > 0 ? 1 : -1);
+  setTimeout(() => wheelLock = false, 700);
+}, { passive: false });
+let sy = null, sx = null;
+addEventListener('touchstart', e => { sy = e.touches[0].clientY; sx = e.touches[0].clientX; }, { passive: true });
+addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+addEventListener('touchend', e => {
+  if (sy === null) return;
+  const dy = sy - e.changedTouches[0].clientY, dx = sx - e.changedTouches[0].clientX;
+  if (Math.max(Math.abs(dx), Math.abs(dy)) > 50) step((Math.abs(dx) > Math.abs(dy) ? dx : dy) > 0 ? 1 : -1);
+  sy = sx = null;
+});
+go(location.hash.slice(1) || 'home', false);
+addEventListener('hashchange', () => go(location.hash.slice(1), false));
+
+/* ---------- Animated particle background ---------- */
+const cv = document.getElementById('bg'), ctx = cv.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, dpr, pts = [];
+const mouse = { x: -999, y: -999 };
+
+function resize() {
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  cv.style.width = W + 'px'; cv.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.min(78, Math.floor(W * H / 19000));
+  pts = Array.from({ length: n }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
+    r: Math.random() * 1.8 + .6
+  }));
+}
+addEventListener('resize', resize);
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const link = 155;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i];
+    if (!reduce) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+      if (d < 120) { p.x += dx / d * 1.4; p.y += dy / d * 1.4; }
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, 6.283);
+    ctx.fillStyle = 'rgba(190,185,255,.75)';
+    ctx.fill();
+    for (let j = i + 1; j < pts.length; j++) {
+      const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+      if (d < link) {
+        ctx.strokeStyle = `rgba(139,123,255,${(1 - d / link) * .35})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+      }
+    }
+  }
+  if (!reduce) requestAnimationFrame(draw);
+}
+resize(); draw();
+</script>
 </body>
 </html>
