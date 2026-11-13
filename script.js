@@ -1,4 +1,5 @@
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // AGE FROM BIRTHDAY
@@ -11,10 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let age = today.getFullYear() - birthday.getFullYear();
 
-        if (
-            today <
-            new Date(today.getFullYear(), 9, 17)
-        ) {
+        if (today < new Date(today.getFullYear(), 9, 17)) {
             age--;
         }
 
@@ -35,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const el = document.getElementById("typed");
 
         if (!el) return;
+
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         setInterval(function () {
@@ -99,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (flippedCards.length === 2) {
             moves++;
+
             document.getElementById("moves").textContent = moves;
 
             const first = flippedCards[0];
@@ -139,6 +139,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (restartButton) {
         restartButton.addEventListener("click", startMemoryGame);
     }
+
+    // START GAME
+    startMemoryGame();
+
+});
+
 
     // START GAME
     startMemoryGame();
