@@ -109,12 +109,11 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
   background: #174b48;
   border-color: var(--accent2);
 }
-/* FLOATING AWARD PICTURES */
 .floating-awards {
     position: fixed;
     top: 0;
     left: 10px;
-    width: 100px;
+    width: 65px;
     height: 100vh;
     overflow: hidden;
     pointer-events: none;
@@ -123,30 +122,21 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
 
 .floating-awards img {
     position: absolute;
-    left: 10px;
-    top: -100px;
-    width: 65px !important;
-    height: 65px !important;
-    max-width: 65px;
+    top: -80px;
+    left: 5px;
+
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+
     object-fit: contain;
     animation: falling 15s linear infinite;
 }
 
-.floating-awards img:nth-child(1) { animation-delay: 0s; }
-.floating-awards img:nth-child(2) { animation-delay: -1.3s; }
-.floating-awards img:nth-child(3) { animation-delay: -2.6s; }
-.floating-awards img:nth-child(4) { animation-delay: -3.9s; }
-.floating-awards img:nth-child(5) { animation-delay: -5.2s; }
-.floating-awards img:nth-child(6) { animation-delay: -6.5s; }
-.floating-awards img:nth-child(7) { animation-delay: -7.8s; }
-.floating-awards img:nth-child(8) { animation-delay: -9.1s; }
-.floating-awards img:nth-child(9) { animation-delay: -10.4s; }
-.floating-awards img:nth-child(10) { animation-delay: -11.7s; }
-.floating-awards img:nth-child(11) { animation-delay: -13s; }
-
 @keyframes falling {
     from {
-        top: -100px;
+        top: -80px;
         transform: rotate(0deg);
     }
     to {
