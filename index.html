@@ -243,38 +243,50 @@
     </section>
 
     <!-- ACHIEVEMENTS -->
-    <section id="achievements">
-      <h2>Achievements</h2>
-      <div class="timeline">
-        <div class="step glass"><h3>Mogao Elementary School</h3><p>Grades 1 to 3</p></div>
-        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 4</p></div>
-        <div class="step glass"><h3>Am-am Elementary School</h3><p>Grade 5</p></div>
-        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 6 · Graduated here</p></div>
-        <div class="step glass"><h3>Mankayan National High School</h3><p>Junior High School · Graduated</p></div>
-        <div class="step glass"><h3>Mankayan National High School</h3><p>Senior High School · Honor student</p></div>
-        <div class="step glass last"><h3>University of the Cordilleras</h3><p>College · Information Technology · Currently studying</p></div>
+<section id="achievements">
+  <h2>Achievements</h2>
+  <div class="timeline">
+    <div class="step glass"><h3>Mogao Elementary School</h3><p>Grades 1 to 3</p></div>
+    <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 4</p></div>
+    <div class="step glass"><h3>Am-am Elementary School</h3><p>Grade 5</p></div>
+    <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 6 · Graduated here</p></div>
+    <div class="step glass"><h3>Mankayan National High School</h3><p>Junior High School · Graduated</p></div>
+    <div class="step glass"><h3>Mankayan National High School</h3><p>Senior High School · Honor student</p></div>
+    <div class="step glass last"><h3>University of the Cordilleras</h3><p>College · Information Technology · Currently studying</p></div>
+  </div>
+
+  <div class="cards" style="margin-top: 1rem;">
+    <div class="card glass"><div class="icon">⭐</div><h3>Honor Student</h3><p>Recognized as an honor student during Senior High School at Mankayan National High School.</p></div>
+
+    <div class="card glass memory-game">
+      <div class="icon">🧠</div>
+      <h3>Memory Challenge</h3>
+      <p>Test your memory! Find all 6 matching pairs.</p>
+      <div class="game-info">
+        <span>Moves: <strong id="moves">0</strong></span>
+        <span>Matches: <strong id="matches">0 / 6</strong></span>
       </div>
-      <div class="cards" style="margin-top: 1rem;">
-        <div class="card glass"><div class="icon">⭐</div><h3>Honor Student</h3><p>Recognized as an honor student during Senior High School at Mankayan National High School.</p></div>
-          <div class="card glass memory-game">
-        <div class="icon">🧠</div>
-        <h3>Memory Challenge</h3>
-        <p>Test your memory! Find all 6 matching pairs.</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <button class="btn primary">Restart Game</button>
+      <p id="gameMessage">Find all 6 matching pairs!</p>
+    </div>
+  </div>
 
-        <div class="game-info">
-          <span>Moves: <strong id="moves">0</strong></span>
-          <span>Matches: <strong id="matches">0 / 6</strong></span>
-        </div>
-
-        <div class="memory-grid" id="memoryGrid"></div>
-
-        <button class="btn primary">
-  Restart Game
-</button>
-
-<p id="gameMessage">Find all 6 matching pairs!</p>
-</div>
-</div>
+  <!-- AWARDS GALLERY -->
+  <h3 class="gallery-title">Awards &amp; Certificates</h3>
+  <div class="award-gallery">
+    <figure class="award glass"><img src="images/academic-2025-sem1.jpg" alt="Academic Excellence, With Honors, 1st Semester 2025–2026" loading="lazy"><figcaption>Academic Excellence<small>1st Semester · SY 2025–2026</small></figcaption></figure>
+    <figure class="award glass"><img src="images/academic-2025-sem2-midterms.jpg" alt="Academic Excellence, With Honors, 2nd Semester Midterms 2025–2026" loading="lazy"><figcaption>Academic Excellence<small>2nd Sem Midterms · SY 2025–2026</small></figcaption></figure>
+    <figure class="award glass"><img src="images/academic-2025-q4.jpg" alt="Academic Excellence, With Honors, Fourth Quarter 2025–2026" loading="lazy"><figcaption>Academic Excellence<small>Fourth Quarter · SY 2025–2026</small></figcaption></figure>
+    <figure class="award glass"><img src="images/conduct-award.jpg" alt="Conduct Award 2025–2026" loading="lazy"><figcaption>Conduct Award<small>SY 2025–2026</small></figcaption></figure>
+    <figure class="award glass"><img src="images/sophistication.jpg" alt="Certificate for sophistication through actions and character" loading="lazy"><figcaption>Sophistication Through Actions &amp; Character<small>Certificate</small></figcaption></figure>
+    <figure class="award glass"><img src="images/academic-2024-sem1.jpg" alt="Academic Excellence, With Honors, 1st Semester 2024–2025" loading="lazy"><figcaption>Academic Excellence<small>1st Semester · SY 2024–2025</small></figcaption></figure>
+    <figure class="award glass"><img src="images/academic-2024-sem2-midterms.jpg" alt="Academic Excellence, With Honors, 2nd Semester Midterms 2024–2025" loading="lazy"><figcaption>Academic Excellence<small>2nd Sem Midterms · SY 2024–2025</small></figcaption></figure>
+    <figure class="award glass"><img src="images/academic-2024-sem2-finals.jpg" alt="Academic Excellence, With Honors, 2nd Semester Finals 2024–2025" loading="lazy"><figcaption>Academic Excellence<small>2nd Sem Finals · SY 2024–2025</small></figcaption></figure>
+    <figure class="award glass"><img src="images/honors-medal.jpg" alt="With Honors medal, SY 2024–2025" loading="lazy"><figcaption>With Honors Medal<small>SY 2024–2025</small></figcaption></figure>
+    <figure class="award glass"><img src="images/perfect-attendance.jpg" alt="Recognition of Perfect Attendance, 2nd Grading 2024–2025" loading="lazy"><figcaption>Perfect Attendance<small>2nd Grading · SY 2024–2025</small></figcaption></figure>
+    <figure class="award glass"><img src="images/most-behave.jpg" alt="Certificate of Appreciation, Most Behave" loading="lazy"><figcaption>Most Behave<small>Certificate of Appreciation</small></figcaption></figure>
+  </div>
 </section>
 
     <!-- FAMILY -->
