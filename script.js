@@ -144,31 +144,3 @@ document.addEventListener("DOMContentLoaded", function () {
     startMemoryGame();
 
 });
-
-    // AWARDS AND EXTRACURRICULAR IMAGE VIEWER
-
-    window.openAward = function (picture) {
-        const viewer = document.getElementById("awardViewer");
-        const expanded = document.getElementById("expandedAward");
-
-        if (!viewer || !expanded) return;
-
-        expanded.src = picture.src;
-        expanded.alt = picture.alt;
-        viewer.classList.add("show");
-    };
-
-    window.closeAward = function () {
-        const viewer = document.getElementById("awardViewer");
-
-        if (viewer) {
-            viewer.classList.remove("show");
-        }
-    };
-
-    // Close image viewer using ESC key
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            window.closeAward();
-        }
-    });
