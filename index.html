@@ -243,39 +243,71 @@
     </section>
 
     <!-- ACHIEVEMENTS -->
-    <section id="achievements">
-      <h2>Achievements</h2>
-      <div class="timeline">
-        <div class="step glass"><h3>Mogao Elementary School</h3><p>Grades 1 to 3</p></div>
-        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 4</p></div>
-        <div class="step glass"><h3>Am-am Elementary School</h3><p>Grade 5</p></div>
-        <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 6 · Graduated here</p></div>
-        <div class="step glass"><h3>Mankayan National High School</h3><p>Junior High School · Graduated</p></div>
-        <div class="step glass"><h3>Mankayan National High School</h3><p>Senior High School · Honor student</p></div>
-        <div class="step glass last"><h3>University of the Cordilleras</h3><p>College · Information Technology · Currently studying</p></div>
-      </div>
-      <div class="cards" style="margin-top: 1rem;">
-        <div class="card glass"><div class="icon">⭐</div><h3>Honor Student</h3><p>Recognized as an honor student during Senior High School at Mankayan National High School.</p></div>
-          <div class="card glass memory-game">
-        <div class="icon">🧠</div>
-        <h3>Memory Challenge</h3>
-        <p>Test your memory! Find all 6 matching pairs.</p>
+  
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <h2>My Achievements</h2>
 
-        <div class="game-info">
-          <span>Moves: <strong id="moves">0</strong></span>
-          <span>Matches: <strong id="matches">0 / 6</strong></span>
+  <div class="gallery-container">
+
+    <!-- AWARDS -->
+    <div class="gallery-column">
+      <h3>🏆 Awards</h3>
+      <div class="gallery-window">
+        <div class="gallery-track awards-track">
+
+          <img src="images/award%201.jpg" alt="Award 1" onclick="openAward(this)">
+          <img src="images/award%202.jpg" alt="Award 2" onclick="openAward(this)">
+          <img src="images/award%203.jpg" alt="Award 3" onclick="openAward(this)">
+          <img src="images/award%204.jpg" alt="Award 4" onclick="openAward(this)">
+          <img src="images/award%205.jpg" alt="Award 5" onclick="openAward(this)">
+          <img src="images/award%206.jpg" alt="Award 6" onclick="openAward(this)">
+          <img src="images/award%207.jpg" alt="Award 7" onclick="openAward(this)">
+          <img src="images/award%208.jpg" alt="Award 8" onclick="openAward(this)">
+
+          <!-- Duplicate for continuous scrolling -->
+          <img src="images/award%201.jpg" alt="Award 1" onclick="openAward(this)">
+          <img src="images/award%202.jpg" alt="Award 2" onclick="openAward(this)">
+          <img src="images/award%203.jpg" alt="Award 3" onclick="openAward(this)">
+          <img src="images/award%204.jpg" alt="Award 4" onclick="openAward(this)">
+          <img src="images/award%205.jpg" alt="Award 5" onclick="openAward(this)">
+          <img src="images/award%206.jpg" alt="Award 6" onclick="openAward(this)">
+          <img src="images/award%207.jpg" alt="Award 7" onclick="openAward(this)">
+          <img src="images/award%208.jpg" alt="Award 8" onclick="openAward(this)">
+
         </div>
+      </div>
+    </div>
 
-        <div class="memory-grid" id="memoryGrid"></div>
+    <!-- EXTRACURRICULAR -->
+    <div class="gallery-column">
+      <h3>🎓 Extracurricular Activities</h3>
+      <div class="gallery-window">
+        <div class="gallery-track extracurricular-track">
 
-        <button class="btn primary">
-  Restart Game
-</button>
+          <img src="images/Messenger_creation_EAE1355C-82B7-4126-A03C-1DEAABAADAD2.jpeg" alt="Extracurricular Activity 1" onclick="openAward(this)">
+          <img src="images/Messenger_creation_5910D096-4C8C-4DC4-A6DB-157638305521.jpeg" alt="Extracurricular Activity 2" onclick="openAward(this)">
+          <img src="images/Messenger_creation_15FBFFCF-A301-424E-ABC3-57B6A6149267.jpeg" alt="Extracurricular Activity 3" onclick="openAward(this)">
 
-<p id="gameMessage">Find all 6 matching pairs!</p>
-</div>
-</div>
+          <!-- Duplicate for continuous scrolling -->
+          <img src="images/Messenger_creation_EAE1355C-82B7-4126-A03C-1DEAABAADAD2.jpeg" alt="Extracurricular Activity 1" onclick="openAward(this)">
+          <img src="images/Messenger_creation_5910D096-4C8C-4DC4-A6DB-157638305521.jpeg" alt="Extracurricular Activity 2" onclick="openAward(this)">
+          <img src="images/Messenger_creation_15FBFFCF-A301-424E-ABC3-57B6A6149267.jpeg" alt="Extracurricular Activity 3" onclick="openAward(this)">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- IMAGE VIEWER -->
+  <div id="awardViewer" class="award-viewer" onclick="closeAward()">
+    <span class="close-award">&times;</span>
+    <img id="expandedAward" src="" alt="Expanded picture">
+  </div>
+
 </section>
+
 
     <!-- FAMILY -->
     <section id="family">
