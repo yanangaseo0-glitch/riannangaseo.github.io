@@ -150,3 +150,14 @@ document.addEventListener("DOMContentLoaded", function () {
     startMemoryGame();
 
 });
+(function(){
+  var box=document.getElementById('lightbox'),big=box.querySelector('img');
+  document.querySelectorAll('.award').forEach(function(f){
+    f.addEventListener('click',function(){
+      var im=f.querySelector('img');
+      big.src=im.getAttribute('src');big.alt=im.alt;box.hidden=false;
+    });
+  });
+  box.addEventListener('click',function(){box.hidden=true;});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')box.hidden=true;});
+})();
