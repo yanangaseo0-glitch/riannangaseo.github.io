@@ -412,5 +412,24 @@ function draw() {
 }
 resize(); draw();
 </script>
+  <!-- LIGHTBOX MODAL CONTAINER -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+  <img id="modalImg" class="modal-content" src="" alt="Zoomed Award">
+</div>
+
+<script>
+  function openModal(imgSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = imgSrc;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+  }
+</script>
 </body>
 </html>
