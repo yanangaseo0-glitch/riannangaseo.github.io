@@ -70,7 +70,7 @@
   section {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 0 clamp(1rem, 5vw, 4rem) clamp(.5rem, 2vh, 1.5rem);
+    padding: 0 clamp(1rem, 4vw, 3rem) clamp(.5rem, 2vh, 1.5rem);
     opacity: 0; visibility: hidden; transform: translateY(18px) scale(.985);
     transition: opacity .5s ease, transform .5s ease, visibility 0s .5s;
     overflow: hidden;
@@ -80,13 +80,13 @@
     transition: opacity .5s ease, transform .5s ease, visibility 0s;
   }
   h2 {
-    font-size: clamp(1.4rem, 4.5vh, 2.4rem); margin-bottom: clamp(.6rem, 2vh, 1.4rem);
+    font-size: clamp(1.3rem, 4vh, 2.2rem); margin-bottom: clamp(.5rem, 1.5vh, 1rem);
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .glass {
     background: var(--card); border: 1px solid var(--card-border);
-    border-radius: 18px; backdrop-filter: blur(10px);
+    border-radius: 14px; backdrop-filter: blur(10px);
   }
 
   /* ---- Home ---- */
@@ -125,26 +125,28 @@
   .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .2rem; }
   .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
 
-  /* ---- Achievements & Ticker Layout ---- */
+  /* ---- ACHIEVEMENTS & SCHOOLS 3-COLUMNS LAYOUT ---- */
   .achievements-layout {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem;
     width: 100%;
-    max-width: 900px;
+    max-width: 950px;
     align-items: start;
     margin: 0 auto;
   }
+  
+  /* Left Side: Animated Ticker for Awards */
   .awards-ticker-container {
-    height: 400px;
-    padding: 1rem;
+    height: 380px;
+    padding: 0.8rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
   .awards-ticker-container h3 {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
     color: var(--accent);
     text-align: center;
   }
@@ -158,7 +160,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     position: absolute;
     width: 100%;
     animation: scrollDown 15s linear infinite;
@@ -167,50 +169,42 @@
     animation-play-state: paused;
   }
   .ticker-img {
-    width: 100px !important;
-    height: 70px !important;
+    width: 90px !important;
+    height: 60px !important;
     object-fit: cover !important;
     border-radius: 6px !important;
     border: 1px solid var(--accent);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
-    margin: 0 auto;
   }
   .ticker-img:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 12px var(--accent);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--accent);
   }
   @keyframes scrollDown {
     0% { transform: translateY(-50%); }
     100% { transform: translateY(0%); }
   }
 
-  /* Schools Column */
-  .schools-column {
+  /* Right Side: Schools in 3 Columns */
+  .schools-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 0.3rem;
+  }
+  .school-card {
+    padding: 0.7rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
+    justify-content: center;
+    text-align: center;
   }
-  .schools-column .step {
-    padding: 0.6rem 0.9rem 0.6rem 2.4rem;
-    position: relative;
-  }
-  .schools-column .step::before {
-    content: "";
-    position: absolute;
-    left: 0.7rem;
-    top: 0.7rem;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-  }
-  .step h3 { font-size: clamp(.78rem, 1.9vh, 1rem); }
-  .step p { font-size: clamp(.68rem, 1.6vh, .85rem); color: var(--muted); }
+  .school-card h3 { font-size: clamp(.75rem, 1.6vh, .9rem); margin-bottom: 0.2rem; color: var(--text); }
+  .school-card p { font-size: clamp(.65rem, 1.4vh, .78rem); color: var(--muted); }
 
   /* ---- Lightbox Modal Zoom CSS ---- */
   .modal {
@@ -274,11 +268,9 @@
   .pager #count { color: var(--muted); font-size: .85rem; min-width: 3.5rem; text-align: center; }
   .pager .btn:disabled { opacity: .35; cursor: default; transform: none; }
 
-  @media (max-width: 640px) {
-    .hero { flex-direction: column; text-align: center; gap: 1rem; }
-    .hero p { margin: 0 auto; }
-    .cta { justify-content: center; }
+  @media (max-width: 768px) {
     .achievements-layout { grid-template-columns: 1fr; }
+    .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -340,7 +332,7 @@
       <h2>Achievements & Educational Background</h2>
       <div class="achievements-layout">
         
-        <!-- Left Side: Animated Scrolling Awards Column -->
+        <!-- Left Side: Animated Scrolling Awards Thumbnails -->
         <div class="awards-ticker-container glass">
           <h3>Awards & Certificates</h3>
           <div class="ticker-wrapper">
@@ -363,15 +355,15 @@
           </div>
         </div>
 
-        <!-- Right Side: Schools Column -->
-        <div class="schools-column">
-          <div class="step glass"><h3>Mogao Elementary School</h3><p>Grades 1 to 3</p></div>
-          <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 4</p></div>
-          <div class="step glass"><h3>Am-am Elementary School</h3><p>Grade 5</p></div>
-          <div class="step glass"><h3>Colalo Elementary School</h3><p>Grade 6 · Graduated</p></div>
-          <div class="step glass"><h3>Mankayan National High School</h3><p>Junior High School</p></div>
-          <div class="step glass"><h3>Mankayan National High School</h3><p>Senior High School · With Honors</p></div>
-          <div class="step glass last"><h3>University of the Cordilleras</h3><p>College · IT · Current</p></div>
+        <!-- Right Side: Schools in 3 Columns -->
+        <div class="schools-columns-grid">
+          <div class="school-card glass"><h3>Mogao Elementary</h3><p>Grades 1 to 3</p></div>
+          <div class="school-card glass"><h3>Colalo Elementary</h3><p>Grade 4</p></div>
+          <div class="school-card glass"><h3>Am-am Elementary</h3><p>Grade 5</p></div>
+          <div class="school-card glass"><h3>Colalo Elementary</h3><p>Grade 6 · Graduated</p></div>
+          <div class="school-card glass"><h3>Mankayan NHS</h3><p>Junior High School</p></div>
+          <div class="school-card glass"><h3>Mankayan NHS</h3><p>Senior High · With Honors</p></div>
+          <div class="school-card glass" style="grid-column: span 3;"><h3>University of the Cordilleras</h3><p>College · Information Technology · Current</p></div>
         </div>
 
       </div>
@@ -413,7 +405,7 @@
 </div>
 
 <script>
-/* ---------- Page switching (no scrolling) ---------- */
+/* ---------- Page switching ---------- */
 const order = ['home','personal','achievements','family','contact'];
 const sections = Object.fromEntries(order.map(id => [id, document.getElementById(id)]));
 const navBtns = [...document.querySelectorAll('#nav button')];
