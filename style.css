@@ -262,3 +262,31 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
         grid-template-columns: 1fr !important;
     }
 }
+/* AWARD PICTURES SIZE */
+.award-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.award-grid a {
+    display: block;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #a855f7;
+}
+
+.award-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.award-grid a:hover img {
+    transform: scale(1.08);
+}
