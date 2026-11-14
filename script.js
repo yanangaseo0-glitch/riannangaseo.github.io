@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
     // AGE FROM BIRTHDAY
@@ -144,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
     startMemoryGame();
 
 });
-
 
     // START GAME
     startMemoryGame();
