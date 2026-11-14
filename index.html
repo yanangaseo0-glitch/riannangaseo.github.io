@@ -15,27 +15,25 @@
     --accent2: #3ee0c3;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
   html, body {
     height: 100%;
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background-color: #090912;
-    /* Dito natin ibinalik ang mismong background na may mga tuldok at linya */
-    background-image: 
-      radial-gradient(ellipse at 8% 18%, rgba(119, 103, 204, .43) 0%, rgba(70, 62, 125, .22) 27%, transparent 52%),
-      radial-gradient(ellipse at 88% 82%, rgba(55, 184, 157, .34) 0%, rgba(36, 105, 100, .18) 27%, transparent 50%),
-      radial-gradient(ellipse at 54% 58%, rgba(84, 54, 105, .12) 0%, transparent 42%),
-      linear-gradient(rgba(139, 123, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(139, 123, 255, 0.08) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+    background: #090912;
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
   body { position: fixed; inset: 0; width: 100%; }
 
-  /* Animated Orbs */
+  /* ---- ANIMATED CANVAS BACKGROUND (Dots & Connecting Lines) ---- */
+  #bg { 
+    position: fixed; 
+    inset: 0; 
+    z-index: 0; 
+    pointer-events: none; 
+  }
+  
   .orb {
     position: fixed; z-index: 0; border-radius: 50%;
     filter: blur(80px); opacity: .35; pointer-events: none;
@@ -343,6 +341,7 @@
 </head>
 <body>
 
+<canvas id="bg"></canvas>
 <div class="orb o1"></div><div class="orb o2"></div>
 
 <div class="app">
@@ -528,6 +527,57 @@ function closeModal() {
   const modal = document.getElementById('imageModal');
   modal.classList.remove('active');
 }
+
+/* ---------- Animated particle background (Dots & Connecting Lines) ---------- */
+const cv = document.getElementById('bg'), ctx = cv.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, dpr, pts = [];
+const mouse = { x: -999, y: -999 };
+
+function resize() {
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  cv.style.width = W + 'px'; cv.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.min(78, Math.floor(W * H / 19000));
+  pts = Array.from({ length: n }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
+    r: Math.random() * 1.8 + .6
+  }));
+}
+addEventListener('resize', resize);
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
+
+(function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const link = 155;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i];
+    if (!reduce) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if(p.y < 0 || p.y > H) p.vy *= -1;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+      if (d < 120) { p.x += dx / d * 1.4; p.y += dy / d * 1.4; }
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, 6.283);
+    ctx.fillStyle = 'rgba(190,185,255,.75)';
+    ctx.fill();
+    for (let j = i + 1; j < pts.length; j++) {
+      const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+      if (d < link) {
+        ctx.strokeStyle = `rgba(139,123,255,${(1 - d / link) * .35})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+      }
+    }
+  }
+  if (!reduce) requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
