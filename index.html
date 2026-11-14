@@ -20,14 +20,19 @@
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background: #090912;
+    background: #090912 !important;
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
   body { position: fixed; inset: 0; width: 100%; }
 
-  /* ---- Animated particle background canvas ---- */
-  #bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  /* ---- Animated particle background canvas (Pinataas ang z-index para sigurado) ---- */
+  #bg { 
+    position: fixed; 
+    inset: 0; 
+    z-index: 1; 
+    pointer-events: none; 
+  }
   
   .orb {
     position: fixed; z-index: 0; border-radius: 50%;
@@ -42,7 +47,7 @@
 
   /* ---- Layout ---- */
   .app {
-    position: relative; z-index: 1;
+    position: relative; z-index: 2;
     height: 100%; width: 100%;
     display: flex; flex-direction: column;
     padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
