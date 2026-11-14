@@ -6,70 +6,33 @@
 <title>Rianna Ngaseo | Portfolio</title>
 <style>
   :root {
-    --bg: #05050a;
-    --card: rgba(20, 20, 32, 0.78);
-    --card-border: rgba(139, 123, 255, 0.35);
+    --card: rgba(25, 22, 45, 0.85);
+    --card-border: rgba(139, 123, 255, 0.5);
     --text: #f2f2f7;
-    --muted: #b4b4cc;
+    --muted: #c7c7d6;
     --accent: #8b7bff;
     --accent2: #3ee0c3;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  /* ---- 100% GUARANTEED MOVING BACKGROUND ANIMATION ---- */
   html, body {
     height: 100%;
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background-color: var(--bg);
+    background: linear-gradient(125deg, #090514, #120c24, #051923, #150821);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   body { position: fixed; inset: 0; width: 100%; }
-
-  /* ---- NEW DESIGN: CYBERPUNK SCANNING GRID & LASER SWEEP ---- */
-  .cyber-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-color: #05050a;
-    background-image: 
-      linear-gradient(rgba(139, 123, 255, 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(139, 123, 255, 0.07) 1px, transparent 1px);
-    background-size: 50px 50px;
-    overflow: hidden;
-  }
-
-  /* Moving Laser Sweep Line */
-  .cyber-bg::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(62, 224, 195, 0.15) 50%,
-      transparent 100%
-    );
-    animation: laserScan 6s ease-in-out infinite;
-  }
-
-  @keyframes laserScan {
-    0% { transform: translateY(-100%); }
-    50% { transform: translateY(100%); }
-    100% { transform: translateY(-100%); }
-  }
-
-  /* Glowing Corner Accents */
-  .cyber-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(106, 90, 205, 0.15), transparent 70%);
-  }
 
   /* ---- Layout ---- */
   .app {
@@ -173,10 +136,11 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, rgba(30, 25, 50, 0.85), rgba(15, 15, 25, 0.9));
-    border: 2px solid rgba(139, 123, 255, 0.4);
-    box-shadow: 0 12px 35px rgba(139, 123, 255, 0.2), inset 0 0 20px rgba(139, 123, 255, 0.1);
+    background: rgba(20, 15, 35, 0.75);
+    border: 2px solid rgba(139, 123, 255, 0.5);
+    box-shadow: 0 12px 35px rgba(139, 123, 255, 0.25);
     border-radius: 18px;
+    backdrop-filter: blur(10px);
   }
   .awards-ticker-container h3 {
     font-size: 0.9rem;
@@ -251,9 +215,10 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    border: 1.5px solid rgba(139, 123, 255, 0.3);
+    background: rgba(25, 20, 40, 0.75);
+    border: 1.5px solid rgba(139, 123, 255, 0.4);
     border-radius: 14px;
+    backdrop-filter: blur(8px);
     transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease;
     position: relative;
     overflow: hidden;
@@ -262,7 +227,7 @@
   .school-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent2);
-    background: linear-gradient(135deg, rgba(139, 123, 255, 0.18), rgba(62, 224, 195, 0.08));
+    background: rgba(40, 30, 70, 0.85);
     box-shadow: 0 10px 25px rgba(62, 224, 195, 0.3);
   }
   .school-card::before {
@@ -369,9 +334,6 @@
 </head>
 <body>
 
-<!-- Cyberpunk Laser Grid Background Animation -->
-<div class="cyber-bg"></div>
-
 <div class="app">
   <nav id="nav">
     <button data-go="home" class="active">Home</button>
@@ -456,7 +418,7 @@
           <div class="school-card"><h3>Colalo Elementary</h3><p>Grade 6 · Graduated</p></div>
           <div class="school-card"><h3>Mankayan NHS</h3><p>Junior High School</p></div>
           <div class="school-card"><h3>Mankayan NHS</h3><p>Senior High · With Honors</p></div>
-          <div class="school-card" style="grid-column: span 3; background: linear-gradient(135deg, rgba(139, 123, 255, 0.22), rgba(62, 224, 195, 0.12)); border-color: var(--accent2);">
+          <div class="school-card" style="grid-column: span 3; background: rgba(35, 25, 65, 0.85); border-color: var(--accent2);">
             <h3>University of the Cordilleras</h3>
             <p>College · Information Technology · Current</p>
           </div>
