@@ -217,3 +217,48 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
     max-height: 65px !important;
     object-fit: contain !important;
 }
+
+/* AWARDS - SMALL THUMBNAILS */
+#achievements .achievement-layout {
+    display: grid !important;
+    grid-template-columns: 0.85fr 1.15fr !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 1050px !important;
+    align-items: start !important;
+}
+
+#achievements .award-gallery {
+    width: 100% !important;
+    max-width: 350px !important;
+    min-width: 0 !important;
+}
+
+#achievements .award-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    width: 100% !important;
+}
+
+#achievements .award-grid a {
+    display: block !important;
+    width: 100% !important;
+    height: 65px !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+}
+
+#achievements .award-grid img {
+    display: block !important;
+    width: 100% !important;
+    height: 65px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+}
+
+@media (max-width: 700px) {
+    #achievements .achievement-layout {
+        grid-template-columns: 1fr !important;
+    }
+}
