@@ -110,127 +110,68 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
   border-color: var(--accent2);
 }
 
+
 /* ACHIEVEMENT LAYOUT */
 .achievement-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  align-items: start;
-  margin-top: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 20px;
+    align-items: start;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .award-gallery {
-  min-width: 0;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .award-gallery h3 {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
-.award-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.award-grid a {
-  display: block;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 2px solid #a855f7;
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
-}
-
-.award-grid img {
-  display: block;
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.award-grid a:hover img {
-  transform: scale(1.08);
-}
-
-@media (max-width: 700px) {
-  .achievement-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .award-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.achievement-layout {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  align-items: start;
-  width: 100%;
-}
-
-.award-gallery,
-.timeline {
-  min-width: 0;
-}
-
-.award-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.award-grid img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-}
-
-@media (max-width: 700px) {
-  .achievement-layout {
-    grid-template-columns: 1fr;
-  }
-}
-/* Smaller Award Pictures */
 .award-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
 }
 
 .award-grid a {
-    height: 130px;
     display: flex;
+    width: 100%;
+    height: 90px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #a855f7;
     background: #150a28;
-    border-radius: 12px;
 }
 
 .award-grid img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    display: block;
-}
-.award-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 8px !important;
+    transition: transform 0.3s ease;
 }
 
-.award-grid a {
-    height: 85px !important;
-    width: 100% !important;
-    overflow: hidden !important;
+.award-grid a:hover img {
+    transform: scale(1.05);
 }
 
-.award-grid img {
-    width: 100% !important;
-    height: 85px !important;
-    object-fit: contain !important;
-    display: block !important;
+.achievement-layout .timeline {
+    min-width: 0;
 }
+
+@media (max-width: 700px) {
+    .achievement-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .award-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
