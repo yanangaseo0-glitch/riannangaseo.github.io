@@ -203,3 +203,13 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
   place-items: center;
   z-index: 1001;
 }
+.modal-content {
+  max-width: 75vw !important;
+  max-height: 75vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 30px rgba(181, 124, 255, 0.4);
+}
