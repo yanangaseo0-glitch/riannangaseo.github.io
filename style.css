@@ -204,4 +204,16 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
 .achievement-layout .award-gallery .award-grid a:hover img {
     transform: none !important;
 }
+.award-grid a {
+    width: 100% !important;
+    height: 65px !important;
+    max-height: 65px !important;
+    overflow: hidden !important;
+}
 
+.award-grid img {
+    width: 100% !important;
+    height: 65px !important;
+    max-height: 65px !important;
+    object-fit: contain !important;
+}
