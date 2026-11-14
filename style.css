@@ -175,3 +175,33 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
     }
 }
 
+/* FORCE SMALL AWARD THUMBNAILS */
+.achievement-layout .award-gallery .award-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    gap: 8px !important;
+}
+
+.achievement-layout .award-gallery .award-grid a {
+    display: block !important;
+    width: 100% !important;
+    height: 75px !important;
+    max-height: 75px !important;
+    overflow: hidden !important;
+}
+
+.achievement-layout .award-gallery .award-grid img {
+    display: block !important;
+    width: 100% !important;
+    height: 75px !important;
+    max-height: 75px !important;
+    object-fit: contain !important;
+    transform: none !important;
+}
+
+.achievement-layout .award-gallery .award-grid a:hover img {
+    transform: none !important;
+}
+
