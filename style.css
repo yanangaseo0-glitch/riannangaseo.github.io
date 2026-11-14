@@ -162,3 +162,34 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.achievement-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: start;
+  width: 100%;
+}
+
+.award-gallery,
+.timeline {
+  min-width: 0;
+}
+
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.award-grid img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .achievement-layout {
+    grid-template-columns: 1fr;
+  }
+}
