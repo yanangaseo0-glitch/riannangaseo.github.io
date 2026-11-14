@@ -229,3 +229,21 @@ img#modalImg.modal-content {
   border-radius: 8px !important;
   border: 2px solid var(--accent) !important;
 }
+/* Right Side: Schools in 3 Columns */
+  .schools-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 0.3rem;
+  }
+  .school-card {
+    padding: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .school-card h3 { font-size: clamp(.75rem, 1.6vh, .9rem); margin-bottom: 0.2rem; color: var(--text); }
+  .school-card p { font-size: clamp(.65rem, 1.4vh, .78rem); color: var(--muted); }
