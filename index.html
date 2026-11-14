@@ -86,7 +86,8 @@
   }
   .glass {
     background: var(--card); border: 1px solid var(--card-border);
-    border-radius: 14px; backdrop-filter: blur(10px);
+    border-radius: 16px; backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   }
 
   /* ---- Home ---- */
@@ -112,20 +113,21 @@
   .btn {
     border: 1px solid var(--card-border); background: var(--card); color: var(--text);
     padding: .6rem 1.2rem; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
-    transition: transform .2s, background .2s;
+    transition: transform .2s, background .2s, border-color .2s;
   }
-  .btn:hover { transform: translateY(-2px); }
+  .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
   .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #0b0b14; border: none; font-weight: 600; }
 
   /* ---- About ---- */
   .about { max-width: 760px; width: 100%; }
   .about p { color: var(--muted); line-height: 1.55; font-size: clamp(.85rem, 2vh, 1.05rem); margin-bottom: .7rem; }
   .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .7rem; margin-top: clamp(.5rem, 2vh, 1rem); }
-  .fact { padding: .8rem 1rem; }
+  .fact { padding: .8rem 1rem; transition: transform .2s, border-color .2s; }
+  .fact:hover { transform: translateY(-2px); border-color: var(--accent); }
   .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .2rem; }
   .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
 
-  /* ---- ACHIEVEMENTS & SCHOOLS 3-COLUMNS LAYOUT ---- */
+  /* ---- ENHANCED ACHIEVEMENTS & SCHOOLS LAYOUT ---- */
   .achievements-layout {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -136,19 +138,24 @@
     margin: 0 auto;
   }
   
-  /* Left Side: Animated Ticker for Awards */
+  /* Left Side: Animated Ticker for Awards with refined styling */
   .awards-ticker-container {
     height: 380px;
-    padding: 0.8rem;
+    padding: 0.9rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    border-color: rgba(139, 123, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(139, 123, 255, 0.05);
   }
   .awards-ticker-container h3 {
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
     color: var(--accent);
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
   }
   .ticker-wrapper {
     position: relative;
@@ -160,51 +167,90 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     position: absolute;
     width: 100%;
-    animation: scrollDown 15s linear infinite;
+    animation: scrollDown 16s linear infinite;
   }
   .ticker-track:hover {
     animation-play-state: paused;
   }
   .ticker-img {
-    width: 90px !important;
-    height: 60px !important;
+    width: 105px !important;
+    height: 70px !important;
     object-fit: cover !important;
-    border-radius: 6px !important;
-    border: 1px solid var(--accent);
+    border-radius: 8px !important;
+    border: 1px solid rgba(139, 123, 255, 0.4);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
     display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
   .ticker-img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px var(--accent);
+    transform: scale(1.12);
+    border-color: var(--accent2);
+    box-shadow: 0 0 18px rgba(62, 224, 195, 0.5);
   }
   @keyframes scrollDown {
     0% { transform: translateY(-50%); }
     100% { transform: translateY(0%); }
   }
 
-  /* Right Side: Schools in 3 Columns */
+  /* Right Side: Schools in 3 Columns Grid with modern card effects */
   .schools-columns-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.7rem;
+    gap: 0.75rem;
     max-height: 380px;
     overflow-y: auto;
     padding-right: 0.3rem;
   }
+  .schools-columns-grid::-webkit-scrollbar {
+    width: 5px;
+  }
+  .schools-columns-grid::-webkit-scrollbar-thumb {
+    background: rgba(139, 123, 255, 0.3);
+    border-radius: 99px;
+  }
+
   .school-card {
-    padding: 0.7rem;
+    padding: 0.8rem 0.6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    position: relative;
+    overflow: hidden;
   }
-  .school-card h3 { font-size: clamp(.75rem, 1.6vh, .9rem); margin-bottom: 0.2rem; color: var(--text); }
-  .school-card p { font-size: clamp(.65rem, 1.4vh, .78rem); color: var(--muted); }
+  .school-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 20px rgba(139, 123, 255, 0.15);
+  }
+  .school-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0.3;
+    transition: opacity .25s ease;
+  }
+  .school-card:hover::before {
+    opacity: 1;
+  }
+  .school-card h3 { 
+    font-size: clamp(.75rem, 1.6vh, .9rem); 
+    margin-bottom: 0.25rem; 
+    color: var(--text); 
+    font-weight: 600; 
+  }
+  .school-card p { 
+    font-size: clamp(.65rem, 1.4vh, .78rem); 
+    color: var(--muted); 
+    line-height: 1.3;
+  }
 
   /* ---- Lightbox Modal Zoom CSS ---- */
   .modal {
@@ -220,16 +266,21 @@
   }
   .modal.active {
     display: flex !important;
+    animation: fadeIn .3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   .modal-content {
-    max-width: 400px !important;
-    max-height: 70vh !important;
+    max-width: 420px !important;
+    max-height: 75vh !important;
     width: auto !important;
     height: auto !important;
     object-fit: contain !important;
     border-radius: 12px;
     border: 2px solid var(--accent);
-    box-shadow: 0 0 30px rgba(181, 124, 255, 0.4);
+    box-shadow: 0 0 40px rgba(139, 123, 255, 0.4);
     background: var(--card);
   }
   .modal-close {
@@ -247,6 +298,11 @@
     display: grid;
     place-items: center;
     z-index: 1000000;
+    transition: background .2s, border-color .2s;
+  }
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent2);
   }
 
   /* ---- Family / Contact ---- */
@@ -355,7 +411,7 @@
           </div>
         </div>
 
-        <!-- Right Side: Schools in 3 Columns -->
+        <!-- Right Side: Schools in 3 Columns Grid -->
         <div class="schools-columns-grid">
           <div class="school-card glass"><h3>Mogao Elementary</h3><p>Grades 1 to 3</p></div>
           <div class="school-card glass"><h3>Colalo Elementary</h3><p>Grade 4</p></div>
@@ -483,7 +539,7 @@ addEventListener('resize', resize);
 addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
 
-function draw() {
+(function draw() {
   ctx.clearRect(0, 0, W, H);
   const link = 155;
   for (let i = 0; i < pts.length; i++) {
@@ -509,8 +565,7 @@ function draw() {
     }
   }
   if (!reduce) requestAnimationFrame(draw);
-}
-resize(); draw();
+})();
 </script>
 </body>
 </html>
