@@ -159,3 +159,47 @@ footer{text-align:center;color:var(--muted);padding:4rem 1rem 3rem;font-size:.9r
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
 }
+/* --- FIXED LIGHTBOX MODAL ZOOM --- */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(7, 2, 14, 0.85);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 30px rgba(181, 124, 255, 0.4);
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 1001;
+}
