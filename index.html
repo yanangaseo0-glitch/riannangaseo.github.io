@@ -20,40 +20,75 @@
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background-color: var(--bg);
+    background-color: #07070f;
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
   body { position: fixed; inset: 0; width: 100%; }
 
-  /* ---- GUARANTEED SMOOTH MOVING BACKGROUND LINES & DOTS ---- */
-  .animated-bg-mesh {
+  /* ---- ELEGANT DYNAMIC ANIMATED BACKGROUND WAVES & ORBS ---- */
+  .bg-glow-container {
     position: fixed;
-    inset: -50px;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(139, 123, 255, 0.4) 2px, transparent 2px),
-      radial-gradient(circle at 75% 75%, rgba(62, 224, 195, 0.4) 2px, transparent 2px),
-      linear-gradient(to right, rgba(139, 123, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(139, 123, 255, 0.08) 1px, transparent 1px);
-    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
-    animation: moveMesh 25s linear infinite;
+    overflow: hidden;
+    background: #07070f;
   }
-  @keyframes moveMesh {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+  
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.55;
+    mix-blend-mode: screen;
   }
 
-  /* Soft Glowing Orbs */
-  .orb {
-    position: fixed; z-index: 0; border-radius: 50%;
-    filter: blur(100px); opacity: .35; pointer-events: none;
+  /* Orb 1: Purple Wave */
+  .glow-orb.orb-1 {
+    width: 65vmax;
+    height: 65vmax;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    top: -20%;
+    left: -20%;
+    animation: floatOrb1 16s ease-in-out infinite alternate;
   }
-  .orb.o1 { width: 60vmax; height: 60vmax; background: #6a5acd; top: -20vmax; left: -20vmax; animation: drift1 20s ease-in-out infinite alternate; }
-  .orb.o2 { width: 50vmax; height: 50vmax; background: #20b2aa; bottom: -20vmax; right: -20vmax; animation: drift2 25s ease-in-out infinite alternate; }
-  @keyframes drift1 { to { transform: translate(15vmax, 15vmax) scale(1.1); } }
-  @keyframes drift2 { to { transform: translate(-15vmax, -15vmax) scale(1.15); } }
+
+  /* Orb 2: Teal/Cyan Wave */
+  .glow-orb.orb-2 {
+    width: 60vmax;
+    height: 60vmax;
+    background: linear-gradient(135deg, #0d9488, #06b6d4);
+    bottom: -20%;
+    right: -20%;
+    animation: floatOrb2 20s ease-in-out infinite alternate;
+  }
+
+  /* Orb 3: Accent Pink/Magenta Center Pulse */
+  .glow-orb.orb-3 {
+    width: 45vmax;
+    height: 45vmax;
+    background: linear-gradient(135deg, #db2777, #9333ea);
+    top: 30%;
+    left: 30%;
+    opacity: 0.3;
+    animation: floatOrb3 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes floatOrb1 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { transform: translate(25vw, 20vh) scale(1.2) rotate(45deg); }
+  }
+
+  @keyframes floatOrb2 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { transform: translate(-25vw, -20vh) scale(1.25) rotate(-45deg); }
+  }
+
+  @keyframes floatOrb3 {
+    0% { transform: translate(-10vw, -10vh) scale(0.9); }
+    100% { transform: translate(15vw, 15vh) scale(1.3); }
+  }
 
   /* ---- Layout ---- */
   .app {
@@ -353,8 +388,12 @@
 </head>
 <body>
 
-<div class="animated-bg-mesh"></div>
-<div class="orb o1"></div><div class="orb o2"></div>
+<!-- Dynamic Glowing Animated Background -->
+<div class="bg-glow-container">
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+</div>
 
 <div class="app">
   <nav id="nav">
