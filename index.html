@@ -255,27 +255,25 @@
         <div class="step glass last"><h3>University of the Cordilleras</h3><p>College · Information Technology · Currently studying</p></div>
       </div>
       <div class="cards" style="margin-top: 1rem;">
+        <div class="card glass"><div class="icon">🏅</div><h3>Math Quiz Participant</h3><p>Participated in an elementary-level Mathematics Quiz.</p></div>
         <div class="card glass"><div class="icon">⭐</div><h3>Honor Student</h3><p>Recognized as an honor student during Senior High School at Mankayan National High School.</p></div>
-          <div class="card glass memory-game">
-        <div class="icon">🧠</div>
-        <h3>Memory Challenge</h3>
-        <p>Test your memory! Find all 6 matching pairs.</p>
+      </div>  class="achievement-card memory-game">
+    <h2>🧠 Memory Challenge</h2>
+    <p>Test your memory! Find all matching pairs.</p>
 
-        <div class="game-info">
-          <span>Moves: <strong id="moves">0</strong></span>
-          <span>Matches: <strong id="matches">0 / 6</strong></span>
-        </div>
+    <div class="game-info">
+        <span>Moves: <strong id="moves">0</strong></span>
+        <span>Matches: <strong id="matches">0 / 6</strong></span>
+    </div>
 
-        <div class="memory-grid" id="memoryGrid"></div>
+    <div class="memory-grid" id="memoryGrid"></div>
 
-        <button class="btn primary">
-  Restart Game
-</button>
+    <button class="memory-button" onclick="startMemoryGame()">
+        Restart Game
+    </button>
 
-<p id="gameMessage">Find all 6 matching pairs!</p>
-</div>
-</div>
-</section>
+    <p id="gameMessage">Find all 6 matching pairs!</p>
+    </section>
 
     <!-- FAMILY -->
     <section id="family">
@@ -395,7 +393,7 @@ function draw() {
     for (let j = i + 1; j < pts.length; j++) {
       const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
       if (d < link) {
-        ctx.strokeStyle = rgba(139,123,255,${(1 - d / link) * .35});
+        ctx.strokeStyle = `rgba(139,123,255,${(1 - d / link) * .35})`;
         ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
       }
@@ -405,7 +403,5 @@ function draw() {
 }
 resize(); draw();
 </script>
-
-<script src="script.js"></script>
 </body>
 </html>
