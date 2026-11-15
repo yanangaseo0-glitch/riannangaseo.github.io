@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-render-ssr="true" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark" data-a11y-animated-images="system" data-a11y-link-underlines="true">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,16 +14,16 @@
     --accent2: #3ee0c3;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
-  /* ---- 100% GUARANTEED MOVING BACKGROUND ANIMATION ---- */
+
+  /* ---- ENHANCED MOVING BACKGROUND ANIMATION & PARTICLES ---- */
   html, body {
     height: 100%;
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background: linear-gradient(125deg, #090514, #120c24, #051923, #150821);
+    background: linear-gradient(125deg, #05020a, #0e071e, #091c24, #12041a);
     background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
+    animation: gradientBG 15s ease infinite;
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
@@ -33,6 +33,41 @@
     100% { background-position: 0% 50%; }
   }
   body { position: fixed; inset: 0; width: 100%; }
+
+  /* Floating Animated Background Orbs / Particles */
+  .bg-animations {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: floatOrbs 10s ease-in-out infinite alternate;
+  }
+  .orb-1 {
+    width: 350px;
+    height: 350px;
+    background: var(--accent);
+    top: -10%;
+    left: -10%;
+  }
+  .orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent2);
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -5s;
+  }
+  @keyframes floatOrbs {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(40px) scale(1.1); }
+  }
 
   /* ---- Layout ---- */
   .app {
@@ -55,6 +90,7 @@
   nav button.active {
     color: var(--text); background: var(--card); border-color: var(--card-border);
     backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(139, 123, 255, 0.3);
   }
 
   main { position: relative; flex: 1; min-height: 0; }
@@ -105,9 +141,9 @@
   .btn {
     border: 1px solid var(--card-border); background: var(--card); color: var(--text);
     padding: .6rem 1.2rem; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
-    transition: transform .2s, background .2s, border-color .2s;
+    transition: transform .2s, background .2s, border-color .2s, box-shadow .2s;
   }
-  .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .btn:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 5px 15px rgba(139,123,255,0.3); }
   .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #0b0b14; border: none; font-weight: 600; }
 
   /* ---- About ---- */
@@ -306,217 +342,145 @@
     border-color: var(--accent2);
     transform: scale(1.1);
   }
-
-  /* ---- Family / Contact ---- */
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
-  .card { padding: clamp(1rem, 3vh, 1.6rem); transition: transform .25s, border-color .25s; }
-  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-  .card .icon { font-size: clamp(1.4rem, 4vh, 2rem); margin-bottom: .4rem; }
-  .card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .3rem; }
-  .card p { color: var(--muted); font-size: clamp(.8rem, 1.9vh, .95rem); line-height: 1.5; }
-
-  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
-  .links a { text-decoration: none; color: inherit; display: block; padding: clamp(1rem, 3vh, 1.5rem); transition: transform .25s, border-color .25s; }
-  .links a:hover { transform: translateY(-4px); border-color: var(--accent2); }
-  .links b { display: block; margin-bottom: .25rem; }
-  .links span { color: var(--muted); font-size: .85rem; word-break: break-all; }
-  
-  footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
-  .pager { display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .4rem 1rem; }
-  .pager #count { color: var(--muted); font-size: .85rem; min-width: 3.5rem; text-align: center; }
-  .pager .btn:disabled { opacity: .35; cursor: default; transform: none; }
-
-  @media (max-width: 768px) {
-    .achievements-layout { grid-template-columns: 1fr; }
-    .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
-  }
 </style>
 </head>
 <body>
+  <div class="bg-animations">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+  </div>
+  
+  <div class="app">
+    <nav>
+      <button class="active" onclick="switchTab('home')">Home</button>
+      <button onclick="switchTab('about')">About</button>
+      <button onclick="switchTab('achievements')">Achievements & Schools</button>
+    </nav>
 
-<div class="app">
-  <nav id="nav">
-    <button data-go="home" class="active">Home</button>
-    <button data-go="personal">Personal Information</button>
-    <button data-go="achievements">Achievements</button>
-    <button data-go="family">Family</button>
-    <button data-go="contact">Contact</button>
-  </nav>
-
-  <main>
-    <!-- HOME -->
-    <section id="home" class="active">
-      <div class="hero">
-        <div class="portrait"><div class="inner">
-          <img src="https://www.yanangaseo.citcs.site/portrait.jpg" alt="Portrait of Rianna Ngaseo in a black blazer" onerror="this.replaceWith(document.createTextNode('RN'))">
-        </div></div>
-        <div>
-          <small>Hi, I’m</small>
-          <h1>Rianna <span>Ngaseo</span></h1>
-          <p>An <strong>IT student</strong> at the University of the Cordilleras, learning to build things for the web.</p>
-          <div class="cta">
-            <button class="btn primary" data-go="personal">Personal Information</button>
-            <button class="btn" data-go="contact">Get in touch</button>
+    <main>
+      <!-- HOME SECTION -->
+      <section id="home" class="active">
+        <div class="hero">
+          <div class="portrait">
+            <div class="inner">
+              <img src="assets/profile.jpg" alt="Rianna Ngaseo" onerror="this.parentElement.innerText='RN'">
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PERSONAL INFORMATION -->
-    <section id="personal">
-      <div class="about">
-        <h2>Personal Information</h2>
-        <p>Hello! I’m Rianna Ngaseo, an Information Technology student at the University of the Cordilleras. I enjoy learning about computers, technology, and how digital tools can make everyday life easier.</p>
-        <p>I’m a curious person who likes discovering new things and exploring new ideas. As an IT student, I want to improve my skills, become more creative, and gain experience in programming and web development. I see every challenge as a chance to learn and grow.</p>
-        <p>When I’m not studying, I enjoy spending time on my interests and trying new things. Through this portfolio, I hope to share my background, educational journey, and the projects and experiences I gain along the way.</p>
-        <div class="facts">
-          <div class="fact glass"><b>Full Name</b><span>Rianna Ngaseo</span></div>
-          <div class="fact glass"><b>Birthday</b><span>October 17, 2008</span></div>
-          <div class="fact glass"><b>Age</b><span>18</span></div>
-          <div class="fact glass"><b>Height</b><span>5'1"</span></div>
-          <div class="fact glass"><b>Weight</b><span>44 kg</span></div>
-          <div class="fact glass"><b>Civil Status</b><span>Single</span></div>
-          <div class="fact glass"><b>Course</b><span>Information Technology</span></div>
-          <div class="fact glass"><b>School</b><span>University of the Cordilleras</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements">
-      <h2>Achievements & Educational Background</h2>
-      <div class="achievements-layout">
-        
-        <!-- Left Side: Animated Scrolling Awards Thumbnails -->
-        <div class="awards-ticker-container">
-          <h3>Awards & Certificates</h3>
-          <div class="ticker-wrapper">
-            <div class="ticker-track">
-              <img src="images/award 1.jpg" alt="Award 1" class="ticker-img" onclick="openModal('images/award 1.jpg')">
-              <img src="images/award 2.jpg" alt="Award 2" class="ticker-img" onclick="openModal('images/award 2.jpg')">
-              <img src="images/award 3.jpg" alt="Award 3" class="ticker-img" onclick="openModal('images/award 3.jpg')">
-              <img src="images/award 4.jpg" alt="Award 4" class="ticker-img" onclick="openModal('images/award 4.jpg')">
-              <img src="images/award 5.jpg" alt="Award 5" class="ticker-img" onclick="openModal('images/award 5.jpg')">
-              <img src="images/award 6.png" alt="Award 6" class="ticker-img" onclick="openModal('images/award 6.png')">
-              <img src="images/award 7.png" alt="Award 7" class="ticker-img" onclick="openModal('images/award 7.png')">
-              <img src="images/award 8.png" alt="Medal" class="ticker-img" onclick="openModal('images/award 8.png')">
-              <img src="images/Messenger_creation_15FBFFCF-A301-424E-ABC3-57B6A6149267.jpeg" alt="Conduct" class="ticker-img" onclick="openModal('images/Messenger_creation_15FBFFCF-A301-424E-ABC3-57B6A6149267.jpeg')">
-              <img src="images/Messenger_creation_5910D096-4C8C-4DC4-A6DB-157638305521.jpeg" alt="Attendance" class="ticker-img" onclick="openModal('images/Messenger_creation_5910D096-4C8C-4DC4-A6DB-157638305521.jpeg')">
-              
-              <!-- Duplicate para sa smooth looping -->
-              <img src="images/award 1.jpg" alt="Award 1" class="ticker-img" onclick="openModal('images/award 1.jpg')">
-              <img src="images/award 2.jpg" alt="Award 2" class="ticker-img" onclick="openModal('images/award 2.jpg')">
+          <div>
+            <small>Hello, I'm</small>
+            <h1><span>Rianna Ngaseo</span></h1>
+            <p>Welcome to my personal portfolio website. Explore my academic background and achievements.</p>
+            <div class="cta">
+              <button class="btn primary" onclick="switchTab('achievements')">View Achievements</button>
+              <button class="btn" onclick="switchTab('about')">About Me</button>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Right Side: Schools in 3 Columns Grid -->
-        <div class="schools-columns-grid">
-          <div class="school-card"><h3>Mogao Elementary</h3><p>Grades 1 to 3</p></div>
-          <div class="school-card"><h3>Colalo Elementary</h3><p>Grade 4</p></div>
-          <div class="school-card"><h3>Am-am Elementary</h3><p>Grade 5</p></div>
-          <div class="school-card"><h3>Colalo Elementary</h3><p>Grade 6 · Graduated</p></div>
-          <div class="school-card"><h3>Mankayan NHS</h3><p>Junior High School</p></div>
-          <div class="school-card"><h3>Mankayan NHS</h3><p>Senior High · With Honors</p></div>
-          <div class="school-card" style="grid-column: span 3; background: rgba(35, 25, 65, 0.85); border-color: var(--accent2);">
-            <h3>University of the Cordilleras</h3>
-            <p>College · Information Technology · Current</p>
+      <!-- ABOUT SECTION -->
+      <section id="about">
+        <div class="about glass" style="padding: 2rem;">
+          <h2>About Me</h2>
+          <p>I am dedicated to continuous learning and academic excellence. This portfolio showcases my educational milestones and achievements.</p>
+          <div class="facts">
+            <div class="fact glass">
+              <b>Focus</b>
+              <span>Academics & Growth</span>
+            </div>
+            <div class="fact glass">
+              <b>Interest</b>
+              <span>Innovation & Design</span>
+            </div>
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- ACHIEVEMENTS & SCHOOLS SECTION -->
+      <section id="achievements">
+        <div class="achievements-layout">
+          <!-- AWARDS TICKER -->
+          <div class="awards-ticker-container">
+            <h3>Achievements</h3>
+            <div class="ticker-wrapper" id="tickerWrapper">
+              <div class="ticker-track" id="tickerTrack">
+                <!-- Image items -->
+                <img src="assets/award1.jpg" alt="Award 1" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award2.jpg" alt="Award 2" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award3.jpg" alt="Award 3" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award4.jpg" alt="Award 4" class="ticker-img" onclick="openModal(this.src)">
+                <!-- Duplicate for smooth infinite loop effect -->
+                <img src="assets/award1.jpg" alt="Award 1" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award2.jpg" alt="Award 2" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award3.jpg" alt="Award 3" class="ticker-img" onclick="openModal(this.src)">
+                <img src="assets/award4.jpg" alt="Award 4" class="ticker-img" onclick="openModal(this.src)">
+              </div>
+            </div>
+          </div>
 
-    <!-- FAMILY -->
-    <section id="family">
-      <h2>Family</h2>
-      <div class="cards">
-        <div class="card glass"><div class="icon"></div><h3></h3><p>Mother</p></div>
-        <div class="card glass"><div class="icon"></div><h3></h3><p>Father</p></div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Social and contact</h2>
-      <div class="links">
-        <a class="glass" href="https://www.facebook.com/share/1LxtsNfTrg/" target="_blank" rel="noopener"><b>Facebook</b><span>Visit my Facebook</span></a>
-        <a class="glass" href="https://www.instagram.com/_yanaaa._irl?obrf=MmE2eGx1YXc0cm82" target="_blank" rel="noopener"><b>Instagram</b><span>@_yanaaa._irl</span></a>
-        <a class="glass" href="mailto:yanangaseo0@gmail.com"><b>Email</b><span>yanangaseo0@gmail.com</span></a>
-      </div>
-    </section>
-
-  </main>
-
-  <div class="pager">
-    <button class="btn" id="prev">← Previous</button>
-    <span id="count">1 / 5</span>
-    <button class="btn primary" id="next">Next →</button>
+          <!-- SCHOOLS 3-COLUMN GRID -->
+          <div class="schools-columns-grid">
+            <div class="school-card">
+              <h3>Elementary</h3>
+              <p>Primary education foundation with honors and active participation.</p>
+            </div>
+            <div class="school-card">
+              <h3>Junior High</h3>
+              <p>Completed junior high school with focus on science and mathematics.</p>
+            </div>
+            <div class="school-card">
+              <h3>Senior High</h3>
+              <p>Specialized track focused on advanced academic preparation.</p>
+            </div>
+            <div class="school-card">
+              <h3>College</h3>
+              <p>Tertiary education pursuing degree goals and excellence.</p>
+            </div>
+            <div class="school-card">
+              <h3>Certifications</h3>
+              <p>Additional specialized training and skill certifications.</p>
+            </div>
+            <div class="school-card">
+              <h3>Projects</h3>
+              <p>Key academic projects and collaborative presentations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-  <footer>© 2026 Rianna Ngaseo. All rights reserved.</footer>
-</div>
 
-<!-- LIGHTBOX MODAL CONTAINER -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-  <button class="modal-close" onclick="closeModal()">&times;</button>
-  <img id="modalImg" class="modal-content" src="" alt="Zoomed Award">
-</div>
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <img class="modal-content" id="modalImg" alt="Zoomed Award">
+  </div>
 
-<script>
-/* ---------- Page switching ---------- */
-const order = ['home','personal','achievements','family','contact'];
-const sections = Object.fromEntries(order.map(id => [id, document.getElementById(id)]));
-const navBtns = [...document.querySelectorAll('#nav button')];
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      
+      const targetSection = document.getElementById(tabId);
+      if(targetSection) targetSection.classList.add('active');
 
-function go(id, push = true) {
-  if (!sections[id]) id = 'home';
-  order.forEach(k => sections[k].classList.toggle('active', k === id));
-  navBtns.forEach(b => b.classList.toggle('active', b.dataset.go === id));
-  if (push) history.replaceState(null, '', '#' + id);
-  const i = order.indexOf(id);
-  document.getElementById('prev').disabled = i === 0;
-  document.getElementById('next').disabled = i === order.length - 1;
-  document.getElementById('count').textContent = (i + 1) + ' / ' + order.length;
-}
-document.getElementById('prev').addEventListener('click', () => step(-1));
-document.getElementById('next').addEventListener('click', () => step(1));
-document.addEventListener('click', e => {
-  const t = e.target.closest('[data-go]');
-  if (t) go(t.dataset.go);
-});
-function current() { return order.find(k => sections[k].classList.contains('active')); }
-function step(d) {
-  const i = order.indexOf(current());
-  go(order[Math.min(order.length - 1, Math.max(0, i + d))]);
-}
-addEventListener('keydown', e => {
-  if (['ArrowRight','ArrowDown','PageDown'].includes(e.key)) step(1);
-  if (['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) step(-1);
-});
-addEventListener('wheel', e => { e.preventDefault(); }, { passive: false, capture: true });
-let sy = null, sx = null;
-addEventListener('touchstart', e => { sy = e.touches[0].clientY; sx = e.touches[0].clientX; }, { passive: true });
-addEventListener('touchmove', e => { if(sy!==null) e.preventDefault(); }, { passive: false });
-addEventListener('touchend', e => {
-  if (sy === null) return;
-  const dy = sy - e.changedTouches[0].clientY, dx = sx - e.changedTouches[0].clientX;
-  if (Math.max(Math.abs(dx), Math.abs(dy)) > 50) step((Math.abs(dx) > Math.abs(dy) ? dx : dy) > 0 ? 1 : -1);
-  sy = sx = null;
-});
-go(location.hash.slice(1) || 'home', false);
-addEventListener('hashchange', () => go(location.hash.slice(1), false));
+      const buttons = document.querySelectorAll('nav button');
+      if(tabId === 'home') buttons[0].classList.add('active');
+      if(tabId === 'about') buttons[1].classList.add('active');
+      if(tabId === 'achievements') buttons[2].classList.add('active');
+    }
 
-/* ---------- Lightbox Modal Functions ---------- */
-function openModal(imgSrc) {
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImg');
-  modalImg.src = imgSrc;
-  modal.classList.add('active');
-}
-function closeModal() {
-  const modal = document.getElementById('imageModal');
-  modal.classList.remove('active');
-}
-</script>
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+    }
+  </script>
 </body>
 </html>
