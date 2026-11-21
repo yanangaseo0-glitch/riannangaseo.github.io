@@ -6,22 +6,25 @@
 <title>Rianna Ngaseo | Portfolio</title>
 <style>
   :root {
-    --card: rgba(25, 22, 45, 0.85);
-    --card-border: rgba(139, 123, 255, 0.5);
-    --text: #f2f2f7;
-    --muted: #c7c7d6;
-    --accent: #8b7bff;
-    --accent2: #3ee0c3;
+    --card: rgba(25, 16, 46, 0.86);
+    --card-border: rgba(196, 155, 255, 0.45);
+    --text: #f5efff;
+    --muted: #c8b6e6;
+    --accent: #c49bff;
+    --accent2: #8e4dff;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   
-  /* ---- 100% GUARANTEED MOVING BACKGROUND ANIMATION ---- */
+  /* ---- LAVENDER PURPLE x BLACK BACKGROUND + MOVING LINES ---- */
   html, body {
     height: 100%;
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-    background: linear-gradient(125deg, #090514, #120c24, #051923, #150821);
+    background:
+      radial-gradient(circle at 18% 20%, rgba(142, 77, 255, 0.22), transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(196, 155, 255, 0.16), transparent 50%),
+      linear-gradient(125deg, #06030c, #110822, #080412, #180b30);
     background-size: 400% 400%;
     animation: gradientBG 12s ease infinite;
     color: var(--text);
@@ -33,6 +36,36 @@
     100% { background-position: 0% 50%; }
   }
   body { position: fixed; inset: 0; width: 100%; }
+
+  .bg-lines {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .bg-lines span {
+    position: absolute;
+    top: -180px;
+    width: 2px;
+    height: 160px;
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+    opacity: 0.32;
+    animation: dropLine linear infinite;
+  }
+  .bg-lines span:nth-child(1) { left: 10%; animation-duration: 9s; animation-delay: 0s; }
+  .bg-lines span:nth-child(2) { left: 26%; animation-duration: 12s; animation-delay: -4s; height: 210px; }
+  .bg-lines span:nth-child(3) { left: 44%; animation-duration: 10s; animation-delay: -2s; }
+  .bg-lines span:nth-child(4) { left: 62%; animation-duration: 13s; animation-delay: -6s; height: 220px; }
+  .bg-lines span:nth-child(5) { left: 78%; animation-duration: 9.5s; animation-delay: -3s; }
+  .bg-lines span:nth-child(6) { left: 91%; animation-duration: 11.5s; animation-delay: -5s; height: 185px; }
+
+  @keyframes dropLine {
+    0% { transform: translateY(0); opacity: 0; }
+    15% { opacity: 0.35; }
+    85% { opacity: 0.35; }
+    100% { transform: translateY(120vh); opacity: 0; }
+  }
 
   /* ---- Layout ---- */
   .app {
@@ -55,6 +88,7 @@
   nav button.active {
     color: var(--text); background: var(--card); border-color: var(--card-border);
     backdrop-filter: blur(8px);
+    box-shadow: 0 0 16px rgba(196, 155, 255, 0.22);
   }
 
   main { position: relative; flex: 1; min-height: 0; }
@@ -72,43 +106,133 @@
   }
   h2 {
     font-size: clamp(1.3rem, 4vh, 2.2rem); margin-bottom: clamp(.5rem, 1.5vh, 1rem);
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, #ffffff, var(--accent), var(--accent2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
     font-weight: 800;
   }
   .glass {
     background: var(--card); border: 1px solid var(--card-border);
     border-radius: 16px; backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   }
 
-  /* ---- Home ---- */
-  .hero { display: flex; align-items: center; gap: clamp(1.2rem, 5vw, 3.5rem); max-width: 900px; width: 100%; }
+  /* ---- Home (With Social & Contact Cards Inside) ---- */
+  .hero {
+    display: flex; align-items: center; gap: clamp(1.2rem, 4.5vw, 3.2rem);
+    max-width: 980px; width: 100%;
+    animation: homeFloat 5.5s ease-in-out infinite;
+  }
+  @keyframes homeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .portrait-box {
+    position: relative;
+    flex: none;
+  }
+  .portrait-box::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 155, 255, 0.35), transparent 72%);
+    filter: blur(10px);
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(0.96); opacity: 0.65; }
+    50% { transform: scale(1.06); opacity: 1; }
+  }
   .portrait {
-    flex: none; width: clamp(110px, 30vh, 280px); aspect-ratio: 1; border-radius: 50%;
-    padding: 5px; background: conic-gradient(from 0deg, var(--accent), var(--accent2), #ff6fb5, var(--accent));
+    position: relative; z-index: 1;
+    width: clamp(110px, 28vh, 265px); aspect-ratio: 1; border-radius: 50%;
+    padding: 5px; background: conic-gradient(from 0deg, var(--accent), var(--accent2), #ebd8ff, var(--accent));
     animation: spin 8s linear infinite;
+    box-shadow: 0 0 26px rgba(196, 155, 255, 0.35);
   }
   .portrait .inner {
-    width: 100%; height: 100%; border-radius: 50%; background: #15151f; overflow: hidden;
+    width: 100%; height: 100%; border-radius: 50%; background: #0c0617; overflow: hidden;
     display: grid; place-items: center; animation: spin 8s linear infinite reverse;
     font-size: 3rem; font-weight: 700; color: var(--accent);
   }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .portrait img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .hero small { color: var(--muted); font-size: clamp(.85rem, 2vh, 1.1rem); }
-  .hero h1 { font-size: clamp(2rem, 8vh, 4.4rem); line-height: 1.05; margin: .2rem 0 .8rem; }
-  .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p { color: var(--muted); font-size: clamp(.9rem, 2.2vh, 1.15rem); max-width: 34ch; }
+
+  .hero-info { flex: 1; min-width: 0; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .45rem;
+    padding: .24rem .7rem; border-radius: 999px;
+    background: rgba(142, 77, 255, 0.16); border: 1px solid var(--card-border);
+    color: var(--accent); font-size: clamp(.75rem, 1.6vh, .9rem);
+  }
+  .hero-tag::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 8px var(--accent);
+    animation: dotBlink 1.8s infinite;
+  }
+  @keyframes dotBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .hero h1 { font-size: clamp(2rem, 7.5vh, 4.2rem); line-height: 1.05; margin: .25rem 0 .65rem; }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent), #ebd8ff, var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--muted); font-size: clamp(.88rem, 2.1vh, 1.1rem); max-width: 38ch; }
   .hero p strong { color: var(--text); }
-  .cta { display: flex; gap: .7rem; margin-top: clamp(.8rem, 2.5vh, 1.5rem); flex-wrap: wrap; }
+
+  /* Contact & Social cards moved to Homepage */
+  .home-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .6rem;
+    margin-top: clamp(.7rem, 2vh, 1.15rem);
+    max-width: 580px;
+  }
+  .home-links a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: .65rem .8rem;
+    border-radius: 13px;
+    transition: transform .25s, border-color .25s, background .25s;
+  }
+  .home-links a:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    background: rgba(38, 22, 70, 0.92);
+  }
+  .home-links b {
+    display: block;
+    font-size: clamp(.72rem, 1.5vh, .82rem);
+    color: var(--accent);
+    margin-bottom: .15rem;
+  }
+  .home-links span {
+    display: block;
+    color: var(--muted);
+    font-size: clamp(.68rem, 1.4vh, .78rem);
+    word-break: break-all;
+  }
+
+  .cta { display: flex; gap: .7rem; margin-top: clamp(.75rem, 2.2vh, 1.25rem); flex-wrap: wrap; }
   .btn {
     border: 1px solid var(--card-border); background: var(--card); color: var(--text);
     padding: .6rem 1.2rem; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
-    transition: transform .2s, background .2s, border-color .2s;
+    transition: transform .2s, background .2s, border-color .2s, box-shadow .2s;
   }
-  .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #0b0b14; border: none; font-weight: 600; }
+  .btn:hover {
+    transform: translateY(-2px); border-color: var(--accent);
+    box-shadow: 0 6px 18px rgba(142, 77, 255, 0.25);
+  }
+  .btn.primary {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    color: #090412; border: none; font-weight: 700;
+  }
 
   /* ---- About ---- */
   .about { max-width: 760px; width: 100%; }
@@ -116,7 +240,7 @@
   .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .7rem; margin-top: clamp(.5rem, 2vh, 1rem); }
   .fact { padding: .8rem 1rem; transition: transform .2s, border-color .2s; }
   .fact:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .2rem; }
+  .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .2rem; }
   .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
 
   /* ---- ACHIEVEMENTS & SCHOOLS LAYOUT ---- */
@@ -136,16 +260,16 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: rgba(20, 15, 35, 0.75);
-    border: 2px solid rgba(139, 123, 255, 0.5);
-    box-shadow: 0 12px 35px rgba(139, 123, 255, 0.25);
+    background: rgba(20, 12, 36, 0.8);
+    border: 2px solid rgba(196, 155, 255, 0.45);
+    box-shadow: 0 12px 35px rgba(142, 77, 255, 0.22);
     border-radius: 18px;
     backdrop-filter: blur(10px);
   }
   .awards-ticker-container h3 {
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, #ffffff, var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -185,8 +309,8 @@
   }
   .ticker-img:hover {
     transform: scale(1.15) rotate(1deg);
-    border-color: var(--accent2);
-    box-shadow: 0 0 22px rgba(62, 224, 195, 0.7);
+    border-color: #ffffff;
+    box-shadow: 0 0 22px rgba(196, 155, 255, 0.7);
   }
   @keyframes scrollDown {
     0% { transform: translateY(-50%); }
@@ -205,7 +329,7 @@
     width: 6px;
   }
   .schools-columns-grid::-webkit-scrollbar-thumb {
-    background: var(--accent);
+    background: var(--accent2);
     border-radius: 99px;
   }
 
@@ -215,27 +339,27 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background: rgba(25, 20, 40, 0.75);
-    border: 1.5px solid rgba(139, 123, 255, 0.4);
+    background: rgba(24, 14, 44, 0.8);
+    border: 1.5px solid rgba(196, 155, 255, 0.35);
     border-radius: 14px;
     backdrop-filter: blur(8px);
     transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
   .school-card:hover {
     transform: translateY(-5px);
-    border-color: var(--accent2);
-    background: rgba(40, 30, 70, 0.85);
-    box-shadow: 0 10px 25px rgba(62, 224, 195, 0.3);
+    border-color: var(--accent);
+    background: rgba(40, 22, 74, 0.9);
+    box-shadow: 0 10px 25px rgba(142, 77, 255, 0.3);
   }
   .school-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 3.5px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0.8;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    opacity: 0.85;
     transition: opacity .3s ease;
   }
   .school-card:hover::before {
@@ -259,7 +383,7 @@
     position: fixed;
     inset: 0;
     z-index: 999999;
-    background: rgba(7, 2, 14, 0.92);
+    background: rgba(6, 2, 12, 0.92);
     backdrop-filter: blur(10px);
     justify-content: center;
     align-items: center;
@@ -280,8 +404,8 @@
     height: auto !important;
     object-fit: contain !important;
     border-radius: 14px;
-    border: 2px solid var(--accent2);
-    box-shadow: 0 0 50px rgba(62, 224, 195, 0.4);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 50px rgba(196, 155, 255, 0.4);
     background: var(--card);
   }
   .modal-close {
@@ -302,24 +426,18 @@
     transition: background .2s, border-color .2s, transform .2s;
   }
   .modal-close:hover {
-    background: rgba(139, 123, 255, 0.2);
-    border-color: var(--accent2);
+    background: rgba(196, 155, 255, 0.2);
+    border-color: var(--accent);
     transform: scale(1.1);
   }
 
-  /* ---- Family / Contact ---- */
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
+  /* ---- Family & Friends ---- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 820px; width: 100%; }
   .card { padding: clamp(1rem, 3vh, 1.6rem); transition: transform .25s, border-color .25s; }
   .card:hover { transform: translateY(-4px); border-color: var(--accent); }
   .card .icon { font-size: clamp(1.4rem, 4vh, 2rem); margin-bottom: .4rem; }
-  .card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .3rem; }
+  .card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .3rem; color: var(--accent); }
   .card p { color: var(--muted); font-size: clamp(.8rem, 1.9vh, .95rem); line-height: 1.5; }
-
-  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; max-width: 760px; width: 100%; }
-  .links a { text-decoration: none; color: inherit; display: block; padding: clamp(1rem, 3vh, 1.5rem); transition: transform .25s, border-color .25s; }
-  .links a:hover { transform: translateY(-4px); border-color: var(--accent2); }
-  .links b { display: block; margin-bottom: .25rem; }
-  .links span { color: var(--muted); font-size: .85rem; word-break: break-all; }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
   .pager { display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .4rem 1rem; }
@@ -327,6 +445,9 @@
   .pager .btn:disabled { opacity: .35; cursor: default; transform: none; }
 
   @media (max-width: 768px) {
+    .hero { flex-direction: column; text-align: center; gap: .9rem; }
+    .home-links { grid-template-columns: 1fr; width: 100%; max-width: 340px; margin-inline: auto; }
+    .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -334,29 +455,50 @@
 </head>
 <body>
 
+<div class="bg-lines" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
 <div class="app">
   <nav id="nav">
     <button data-go="home" class="active">Home</button>
     <button data-go="personal">Personal Information</button>
     <button data-go="achievements">Achievements</button>
-    <button data-go="family">Family</button>
-    <button data-go="contact">Contact</button>
+    <button data-go="family">Family and Friends</button>
   </nav>
 
   <main>
     <!-- HOME -->
     <section id="home" class="active">
       <div class="hero">
-        <div class="portrait"><div class="inner">
-          <img src="https://www.yanangaseo.citcs.site/portrait.jpg" alt="Portrait of Rianna Ngaseo in a black blazer" onerror="this.replaceWith(document.createTextNode('RN'))">
-        </div></div>
-        <div>
-          <small>Hi, I’m</small>
+        <div class="portrait-box">
+          <div class="portrait"><div class="inner">
+            <img src="Professional Studio Portrait.png" alt="Portrait of Rianna Ngaseo in a black blazer" onerror="this.replaceWith(document.createTextNode('RN'))">
+          </div></div>
+        </div>
+        <div class="hero-info">
+          <div class="hero-tag">Hi, I’m</div>
           <h1>Rianna <span>Ngaseo</span></h1>
           <p>An <strong>IT student</strong> at the University of the Cordilleras, learning to build things for the web.</p>
+
+          <!-- Social and Contact placed on Homepage -->
+          <div class="home-links">
+            <a class="glass" href="https://www.facebook.com/share/1LxtsNfTrg/" target="_blank" rel="noopener">
+              <b>Facebook</b>
+              <span>Visit my Facebook</span>
+            </a>
+            <a class="glass" href="https://www.instagram.com/_yanaaa._irl?obrf=MmE2eGx1YXc0cm82" target="_blank" rel="noopener">
+              <b>Instagram</b>
+              <span>@_yanaaa._irl</span>
+            </a>
+            <a class="glass" href="mailto:yanangaseo0@gmail.com">
+              <b>Email</b>
+              <span>yanangaseo0@gmail.com</span>
+            </a>
+          </div>
+
           <div class="cta">
             <button class="btn primary" data-go="personal">Personal Information</button>
-            <button class="btn" data-go="contact">Get in touch</button>
           </div>
         </div>
       </div>
@@ -427,22 +569,13 @@
       </div>
     </section>
 
-    <!-- FAMILY -->
+    <!-- FAMILY AND FRIENDS -->
     <section id="family">
-      <h2>Family</h2>
+      <h2>Family and Friends</h2>
       <div class="cards">
-        <div class="card glass"><div class="icon"></div><h3></h3><p>Mother</p></div>
-        <div class="card glass"><div class="icon"></div><h3></h3><p>Father</p></div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Social and contact</h2>
-      <div class="links">
-        <a class="glass" href="https://www.facebook.com/share/1LxtsNfTrg/" target="_blank" rel="noopener"><b>Facebook</b><span>Visit my Facebook</span></a>
-        <a class="glass" href="https://www.instagram.com/_yanaaa._irl?obrf=MmE2eGx1YXc0cm82" target="_blank" rel="noopener"><b>Instagram</b><span>@_yanaaa._irl</span></a>
-        <a class="glass" href="mailto:yanangaseo0@gmail.com"><b>Email</b><span>yanangaseo0@gmail.com</span></a>
+        <div class="card glass"><h3>Mother</h3><p>Loving support & guidance</p></div>
+        <div class="card glass"><h3>Father</h3><p>Strength & encouragement</p></div>
+        <div class="card glass"><h3>Friends</h3><p>Good company, laughter & shared memories</p></div>
       </div>
     </section>
 
@@ -450,7 +583,7 @@
 
   <div class="pager">
     <button class="btn" id="prev">← Previous</button>
-    <span id="count">1 / 5</span>
+    <span id="count">1 / 4</span>
     <button class="btn primary" id="next">Next →</button>
   </div>
   <footer>© 2026 Rianna Ngaseo. All rights reserved.</footer>
@@ -464,7 +597,7 @@
 
 <script>
 /* ---------- Page switching ---------- */
-const order = ['home','personal','achievements','family','contact'];
+const order = ['home','personal','achievements','family'];
 const sections = Object.fromEntries(order.map(id => [id, document.getElementById(id)]));
 const navBtns = [...document.querySelectorAll('#nav button')];
 
