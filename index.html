@@ -278,7 +278,7 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
 
-  /* ---- HOME SHOWCASE (RECTANGLE HEAD-TO-TOE PORTRAIT) ---- */
+  /* ---- HOME SHOWCASE (FITTED RECTANGLE PORTRAIT + CLICK TO ZOOM) ---- */
   .hero {
     display: flex; align-items: center; gap: clamp(1.5rem, 4.8vw, 3.8rem);
     max-width: 1100px; width: 100%;
@@ -290,7 +290,7 @@
     position: relative;
   }
 
-  /* Full Head-to-Toe Rectangle Showcase */
+  /* Full Fitted Rectangle Showcase */
   .showcase-wrap {
     position: relative;
     flex: none;
@@ -325,11 +325,16 @@
     position: relative;
     z-index: 1;
     height: clamp(275px, 62vh, 535px);
-    aspect-ratio: 3 / 4.35;
+    aspect-ratio: 3 / 4;
     border-radius: 18px;
     padding: 4px;
     background: linear-gradient(155deg, var(--champagne), var(--accent), var(--accent2), var(--accent));
     box-shadow: 0 16px 38px rgba(0, 0, 0, 0.6);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .portrait-rect:hover {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 22px 46px rgba(0, 0, 0, 0.72), 0 0 26px rgba(234, 181, 125, 0.35);
   }
   .portrait-rect .inner {
     width: 100%;
@@ -337,21 +342,43 @@
     border-radius: 14px;
     background: linear-gradient(180deg, #24150d 0%, #100805 100%);
     overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    display: block;
     position: relative;
   }
   .portrait-rect img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center bottom;
+    object-fit: cover;
+    object-position: top center;
     display: block;
     transition: transform .45s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .portrait-rect:hover img {
-    transform: scale(1.035);
+    transform: scale(1.05);
+  }
+
+  /* Subtle zoom hint badge on hover */
+  .zoom-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    background: rgba(18, 10, 6, 0.85);
+    border: 1px solid rgba(234, 181, 125, 0.55);
+    color: var(--champagne);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: .26rem .62rem;
+    border-radius: 999px;
+    opacity: 0.85;
+    transition: opacity .25s ease, transform .25s ease, background .25s ease;
+    pointer-events: none;
+  }
+  .portrait-rect:hover .zoom-badge {
+    opacity: 1;
+    background: rgba(36, 20, 11, 0.96);
+    transform: scale(1.04);
   }
 
   /* Floating Signature Pill overlapping bottom-right of portrait */
@@ -372,6 +399,7 @@
     font-weight: 700;
     color: var(--champagne);
     letter-spacing: .03em;
+    pointer-events: none;
   }
   .floating-pill i {
     width: 8px; height: 8px;
@@ -659,15 +687,20 @@
     to { opacity: 1; }
   }
   .modal-content {
-    max-width: 440px !important;
-    max-height: 75vh !important;
+    max-width: 520px !important;
+    max-height: 82vh !important;
     width: auto !important;
     height: auto !important;
     object-fit: contain !important;
-    border-radius: 14px;
+    border-radius: 16px;
     border: 2px solid var(--accent);
-    box-shadow: 0 0 50px rgba(234, 181, 125, 0.4);
+    box-shadow: 0 0 55px rgba(234, 181, 125, 0.45);
     background: var(--card);
+    animation: zoomPop .28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes zoomPop {
+    from { transform: scale(0.84); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
   .modal-close {
     position: absolute;
@@ -746,14 +779,15 @@
     <!-- HOME -->
     <section id="home" class="active">
       <div class="hero">
-        <!-- Full Head-to-Toe Rectangle Portrait Showcase -->
+        <!-- Fitted Rectangle Portrait Showcase + Click to Zoom -->
         <div class="showcase-wrap">
-          <div class="portrait-rect">
+          <div class="portrait-rect" onclick="openModal('Professional Studio Portrait.png')" title="Click to zoom in">
+            <span class="zoom-badge">🔍 ZOOM</span>
             <div class="inner">
               <img src="Professional Studio Portrait.png" alt="Portrait of Rianna Ngaseo in a black blazer" onerror="this.replaceWith(document.createTextNode('RN'))">
             </div>
+            <div class="floating-pill"><i></i> BSIT · UC Baguio</div>
           </div>
-          <div class="floating-pill"><i></i> BSIT · UC Baguio</div>
         </div>
 
         <div class="hero-info">
@@ -879,7 +913,7 @@
 <!-- LIGHTBOX MODAL CONTAINER -->
 <div id="imageModal" class="modal" onclick="closeModal()">
   <button class="modal-close" onclick="closeModal()">&times;</button>
-  <img id="modalImg" class="modal-content" src="" alt="Zoomed Award">
+  <img id="modalImg" class="modal-content" src="" alt="Zoomed Image">
 </div>
 
 <script>
