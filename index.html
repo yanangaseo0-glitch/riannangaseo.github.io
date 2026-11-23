@@ -724,53 +724,91 @@
     transform: scale(1.1);
   }
 
-  /* ---- Family & Friends (Boxless Flowing Editorial Design) ---- */
-  .ff-stage {
+  /* ---- Family & Friends (Maangas Borderless Angled Showcase) ---- */
+  .ff-arena {
     width: 100%;
-    max-width: 1040px;
+    max-width: 1120px;
     display: flex;
     flex-direction: column;
-    gap: clamp(.9rem, 2.4vh, 1.5rem);
+    gap: clamp(.85rem, 2.2vh, 1.35rem);
   }
-  .ff-row {
+  .ff-top-band {
     display: grid;
-    grid-template-columns: minmax(220px, 320px) 1fr;
+    grid-template-columns: minmax(220px, 310px) 1fr auto;
     align-items: center;
-    gap: clamp(1rem, 3vw, 2.2rem);
-    padding-bottom: clamp(.7rem, 1.8vh, 1.1rem);
-    border-bottom: 1px solid rgba(234, 181, 125, 0.18);
+    gap: clamp(1rem, 2.8vw, 2rem);
+    padding-bottom: clamp(.65rem, 1.5vh, 1rem);
+    border-bottom: 1px solid rgba(234, 181, 125, 0.22);
   }
-  .ff-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+  .ff-pic-frame {
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 94% 0, 100% 100%, 4% 100%);
+    transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), filter .35s ease;
   }
-  .ff-photo {
+  .ff-pic-frame:hover {
+    transform: translateY(-4px) scale(1.02);
+    filter: drop-shadow(0 12px 24px rgba(234, 181, 125, 0.25));
+  }
+  .ff-pic-frame img {
     width: 100%;
-    height: clamp(128px, 21vh, 175px);
+    height: clamp(120px, 19vh, 162px);
     object-fit: cover;
     display: block;
-    transition: transform .35s ease, filter .35s ease;
+    transition: transform .45s ease;
   }
-  .ff-photo:hover {
-    transform: scale(1.03);
-    filter: brightness(1.06);
+  .ff-pic-frame:hover img {
+    transform: scale(1.06);
   }
-  .ff-friends-pair {
+  .ff-role-tag {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .22rem;
+  }
+  .ff-note h3 {
+    font-size: clamp(.98rem, 2.1vh, 1.2rem);
+    color: var(--champagne);
+    font-weight: 800;
+    margin-bottom: .2rem;
+  }
+  .ff-note p {
+    color: var(--muted);
+    font-size: clamp(.8rem, 1.75vh, .94rem);
+    line-height: 1.45;
+    max-width: 44ch;
+  }
+  .ff-father-pillar {
+    text-align: right;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(234, 181, 125, 0.45);
+  }
+  .ff-father-pillar h3 {
+    font-size: clamp(.95rem, 2vh, 1.12rem);
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: .18rem;
+  }
+  .ff-father-pillar p {
+    color: var(--muted);
+    font-size: clamp(.78rem, 1.7vh, .9rem);
+    line-height: 1.4;
+    max-width: 24ch;
+  }
+  .ff-friends-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .65rem;
+    gap: clamp(.9rem, 2.4vw, 1.8rem);
+    align-items: center;
   }
-  .ff-caption h3 {
-    font-size: clamp(1rem, 2.3vh, 1.25rem);
-    color: var(--champagne);
-    font-weight: 700;
-    margin-bottom: .25rem;
-  }
-  .ff-caption p {
-    color: var(--muted);
-    font-size: clamp(.82rem, 1.85vh, .98rem);
-    line-height: 1.5;
-    max-width: 48ch;
+  .ff-friend-item {
+    display: grid;
+    grid-template-columns: minmax(145px, 205px) 1fr;
+    align-items: center;
+    gap: clamp(.75rem, 1.8vw, 1.2rem);
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -788,8 +826,10 @@
     .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
-    .ff-row { grid-template-columns: 1fr; gap: .5rem; text-align: left; }
-    .ff-photo { height: clamp(105px, 16vh, 135px); }
+    .ff-top-band, .ff-friends-grid { grid-template-columns: 1fr; gap: .6rem; }
+    .ff-father-pillar { text-align: left; padding-left: .75rem; }
+    .ff-friend-item { grid-template-columns: 130px 1fr; gap: .65rem; }
+    .ff-pic-frame img { height: clamp(92px, 13vh, 118px); }
   }
 </style>
 </head>
@@ -935,23 +975,43 @@
     <!-- FAMILY AND FRIENDS -->
     <section id="family">
       <h2>Family and Friends</h2>
-      <div class="ff-stage">
-        <div class="ff-row">
-          <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" class="ff-photo" style="object-position: 52% 72%;" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
-          <div class="ff-caption">
-            <h3>Mother</h3>
-            <p>Always there to support me with care, love, and strength every day.</p>
+      <div class="ff-arena">
+        <div class="ff-top-band">
+          <div class="ff-pic-frame" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
+            <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
+          </div>
+          <div class="ff-note">
+            <span class="ff-role-tag">Mother</span>
+            <h3>Warm Hug & Safe Space</h3>
+            <p>Always there for me with love, care, and strength every day.</p>
+          </div>
+          <div class="ff-father-pillar">
+            <h3>Father</h3>
+            <p>Strength & encouragement</p>
           </div>
         </div>
 
-        <div class="ff-row">
-          <div class="ff-friends-pair">
-            <img src="images/download.jpg" alt="Rianna with her friend" class="ff-photo" style="object-position: 75% 45%;" onclick="openModal('images/download.jpg')" title="Click to zoom in">
-            <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" class="ff-photo" style="object-position: 50% 42%;" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+        <div class="ff-friends-grid">
+          <div class="ff-friend-item">
+            <div class="ff-pic-frame" onclick="openModal('images/download.jpg')" title="Click to zoom in">
+              <img src="images/download.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
+            </div>
+            <div class="ff-note">
+              <span class="ff-role-tag">Friends</span>
+              <h3>Easy Laughs & Good Times</h3>
+              <p>Always fun to be with and easy to talk to.</p>
+            </div>
           </div>
-          <div class="ff-caption">
-            <h3>Friends</h3>
-            <p>My friends from senior high who always bring fun, good laughs, and happy memories.</p>
+
+          <div class="ff-friend-item">
+            <div class="ff-pic-frame" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+              <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
+            </div>
+            <div class="ff-note">
+              <span class="ff-role-tag">Friends</span>
+              <h3>Senior High Crew</h3>
+              <p>They were my friends in senior high who made school days happy and memorable.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1065,7 +1125,7 @@ const pointerState = { x: -999, y: -999, active: false };
       setTimeout(() => spark.remove(), 650);
     }
 
-    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-photo');
+    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-pic-frame');
     ring.classList.toggle('hovering', Boolean(interactive));
   });
 
