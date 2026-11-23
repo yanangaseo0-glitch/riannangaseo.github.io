@@ -724,128 +724,105 @@
     transform: scale(1.1);
   }
 
-  /* ---- Family & Friends (Aggressive Diagonal Slash & Boxless Spotlight) ---- */
-  .ff-stage-x {
+  /* ---- Family & Friends (Asymmetric Split & Staggered Diagonal Edge) ---- */
+  .ff-vibe-grid {
     width: 100%;
     max-width: 1160px;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: clamp(.85rem, 2.2vw, 1.8rem);
+    align-items: center;
+  }
+  .ff-left-stack {
     display: flex;
     flex-direction: column;
-    gap: clamp(.7rem, 1.9vh, 1.15rem);
-    position: relative;
+    gap: clamp(.75rem, 1.8vh, 1.15rem);
   }
-  .ff-hero-lane {
+  .ff-mother-feature {
     display: grid;
-    grid-template-columns: minmax(225px, 320px) 1fr minmax(175px, 240px);
+    grid-template-columns: minmax(220px, 305px) 1fr;
     align-items: center;
-    gap: clamp(.9rem, 2.5vw, 1.9rem);
-    padding-bottom: clamp(.55rem, 1.3vh, .85rem);
-    border-bottom: 1px solid rgba(234, 181, 125, 0.24);
+    gap: clamp(.8rem, 2vw, 1.4rem);
   }
-  .ff-slash-wrap {
+  .ff-friends-stagger {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(.75rem, 1.8vw, 1.25rem);
+    align-items: start;
+  }
+  .ff-friends-stagger .ff-stagger-card:nth-child(2) {
+    transform: translateY(14px);
+  }
+  .ff-stagger-card {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+  }
+  .ff-edge-shot {
     position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 91% 100%, 7% 100%);
     transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), filter .35s ease;
   }
-  .ff-slash-wrap::before {
+  .ff-edge-shot::after {
     content: "";
     position: absolute;
-    inset: 6px -7px -6px 7px;
-    background: linear-gradient(135deg, rgba(234, 181, 125, 0.45), rgba(168, 92, 36, 0.12));
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-    z-index: 0;
-    pointer-events: none;
-    transition: transform .35s ease, opacity .35s ease;
+    left: 6%;
+    right: 6%;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--champagne), var(--accent), var(--accent2));
   }
-  .ff-slash-wrap:hover {
+  .ff-edge-shot:hover {
     transform: translateY(-4px) scale(1.025);
-    filter: drop-shadow(0 14px 28px rgba(234, 181, 125, 0.32));
+    filter: drop-shadow(0 14px 26px rgba(234, 181, 125, 0.3));
   }
-  .ff-slash-wrap:hover::before {
-    transform: translate(3px, 2px);
-  }
-  .ff-slash-clip {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-  }
-  .ff-slash-clip img {
+  .ff-edge-shot img {
     width: 100%;
-    height: clamp(112px, 17.5vh, 150px);
+    height: clamp(104px, 16vh, 140px);
     object-fit: cover;
     display: block;
     transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .ff-slash-wrap:hover .ff-slash-clip img {
+  .ff-edge-shot:hover img {
     transform: scale(1.08);
   }
-  .ff-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: .4rem;
-    font-size: .66rem;
+  .ff-tag {
+    display: inline-block;
+    font-size: .65rem;
     font-weight: 800;
-    letter-spacing: .15em;
+    letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: .18rem;
+    margin-bottom: .14rem;
   }
-  .ff-kicker::before {
-    content: "";
-    width: 14px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--champagne), var(--accent));
-  }
-  .ff-copy h3 {
-    font-size: clamp(.95rem, 2vh, 1.16rem);
-    color: var(--champagne);
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    margin-bottom: .16rem;
-  }
-  .ff-copy p {
-    color: var(--muted);
-    font-size: clamp(.78rem, 1.68vh, .91rem);
-    line-height: 1.42;
-    max-width: 44ch;
-  }
-  .ff-father-zone {
-    text-align: right;
-    padding: .3rem .9rem .3rem 0;
-    border-right: 3px solid var(--accent);
-    background: linear-gradient(270deg, rgba(234, 181, 125, 0.1), transparent);
-  }
-  .ff-father-zone .ff-kicker {
-    justify-content: flex-end;
-  }
-  .ff-father-zone .ff-kicker::before {
-    display: none;
-  }
-  .ff-father-zone h3 {
-    font-size: clamp(.92rem, 1.9vh, 1.08rem);
+  .ff-text h3 {
+    font-size: clamp(.92rem, 1.95vh, 1.12rem);
     color: var(--champagne);
     font-weight: 800;
     margin-bottom: .14rem;
   }
-  .ff-father-zone p {
+  .ff-text p {
     color: var(--muted);
-    font-size: clamp(.76rem, 1.62vh, .88rem);
-    line-height: 1.38;
+    font-size: clamp(.76rem, 1.62vh, .89rem);
+    line-height: 1.4;
   }
-  .ff-duo-lane {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(.85rem, 2.2vw, 1.7rem);
-    align-items: center;
+  .ff-right-monolith {
+    padding: clamp(1rem, 2.5vh, 1.7rem) clamp(1rem, 2.2vw, 1.5rem);
+    border-left: 3px solid var(--accent);
+    background: linear-gradient(155deg, rgba(234, 181, 125, 0.14), rgba(168, 92, 36, 0.04) 70%, transparent);
+    clip-path: polygon(0 0, 100% 6%, 95% 100%, 0 94%);
   }
-  .ff-duo-lane .ff-duo-item:nth-child(2) {
-    transform: translateX(10px);
+  .ff-right-monolith h3 {
+    font-size: clamp(1.1rem, 2.4vh, 1.35rem);
+    color: var(--champagne);
+    font-weight: 800;
+    margin-bottom: .35rem;
   }
-  .ff-duo-item {
-    display: grid;
-    grid-template-columns: minmax(140px, 195px) 1fr;
-    align-items: center;
-    gap: clamp(.7rem, 1.6vw, 1.15rem);
-    transition: transform .3s ease;
+  .ff-right-monolith p {
+    color: var(--muted);
+    font-size: clamp(.82rem, 1.75vh, .96rem);
+    line-height: 1.5;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -863,12 +840,10 @@
     .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
-    .ff-hero-lane, .ff-duo-lane { grid-template-columns: 1fr; gap: .55rem; }
-    .ff-duo-lane .ff-duo-item:nth-child(2) { transform: none; }
-    .ff-father-zone { text-align: left; padding: .2rem 0 .2rem .75rem; border-right: none; border-left: 3px solid var(--accent); background: linear-gradient(90deg, rgba(234, 181, 125, 0.1), transparent); }
-    .ff-father-zone .ff-kicker { justify-content: flex-start; }
-    .ff-duo-item { grid-template-columns: 125px 1fr; gap: .6rem; }
-    .ff-slash-clip img { height: clamp(86px, 12vh, 110px); }
+    .ff-vibe-grid, .ff-mother-feature, .ff-friends-stagger { grid-template-columns: 1fr; gap: .55rem; }
+    .ff-friends-stagger .ff-stagger-card:nth-child(2) { transform: none; }
+    .ff-right-monolith { clip-path: none; padding: .6rem 0 .6rem .85rem; }
+    .ff-edge-shot img { height: clamp(84px, 11.5vh, 106px); }
   }
 </style>
 </head>
@@ -1014,51 +989,48 @@
     <!-- FAMILY AND FRIENDS -->
     <section id="family">
       <h2>Family and Friends</h2>
-      <div class="ff-stage-x">
-        <div class="ff-hero-lane">
-          <div class="ff-slash-wrap" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
-            <div class="ff-slash-clip">
+      <div class="ff-vibe-grid">
+        <div class="ff-left-stack">
+          <div class="ff-mother-feature">
+            <div class="ff-edge-shot" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
               <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
             </div>
+            <div class="ff-text">
+              <span class="ff-tag">Mother</span>
+              <h3>Steady Heart & Home</h3>
+              <p>She stands by me with patience, kindness, and quiet strength through every season.</p>
+            </div>
           </div>
-          <div class="ff-copy">
-            <span class="ff-kicker">Mother</span>
-            <h3>Steady Heart & Home</h3>
-            <p>She stands by me with patience, kindness, and quiet strength through every season.</p>
-          </div>
-          <div class="ff-father-zone">
-            <span class="ff-kicker">Father</span>
-            <h3>Anchor & Drive</h3>
-            <p>Strength & encouragement</p>
+
+          <div class="ff-friends-stagger">
+            <div class="ff-stagger-card">
+              <div class="ff-edge-shot" onclick="openModal('images/IMG_2987.jpg')" title="Click to zoom in">
+                <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
+              </div>
+              <div class="ff-text">
+                <span class="ff-tag">Friend</span>
+                <h3>Real Vibes & Honest Talks</h3>
+                <p>Someone I can share random stories, real laughs, and simple moments with.</p>
+              </div>
+            </div>
+
+            <div class="ff-stagger-card">
+              <div class="ff-edge-shot" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+                <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
+              </div>
+              <div class="ff-text">
+                <span class="ff-tag">Senior High Friends</span>
+                <h3>Golden Days Together</h3>
+                <p>My senior high circle who turned ordinary school days into bright memories.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="ff-duo-lane">
-          <div class="ff-duo-item">
-            <div class="ff-slash-wrap" onclick="openModal('images/IMG_2987.jpg')" title="Click to zoom in">
-              <div class="ff-slash-clip">
-                <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
-              </div>
-            </div>
-            <div class="ff-copy">
-              <span class="ff-kicker">Friend</span>
-              <h3>Real Vibes & Honest Talks</h3>
-              <p>Someone I can share random stories, real laughs, and simple moments with.</p>
-            </div>
-          </div>
-
-          <div class="ff-duo-item">
-            <div class="ff-slash-wrap" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
-              <div class="ff-slash-clip">
-                <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
-              </div>
-            </div>
-            <div class="ff-copy">
-              <span class="ff-kicker">Senior High Friends</span>
-              <h3>Golden Days Together</h3>
-              <p>My senior high circle who turned ordinary school days into bright memories.</p>
-            </div>
-          </div>
+        <div class="ff-right-monolith">
+          <span class="ff-tag">Father</span>
+          <h3>Anchor & Drive</h3>
+          <p>Strength & encouragement</p>
         </div>
       </div>
     </section>
@@ -1171,7 +1143,7 @@ const pointerState = { x: -999, y: -999, active: false };
       setTimeout(() => spark.remove(), 650);
     }
 
-    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-slash-wrap');
+    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-edge-shot');
     ring.classList.toggle('hovering', Boolean(interactive));
   });
 
