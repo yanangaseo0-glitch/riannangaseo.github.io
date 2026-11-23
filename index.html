@@ -724,101 +724,128 @@
     transform: scale(1.1);
   }
 
-  /* ---- Family & Friends (Sharp Angled Edge & Borderless Editorial) ---- */
-  .ff-arena {
+  /* ---- Family & Friends (Aggressive Diagonal Slash & Boxless Spotlight) ---- */
+  .ff-stage-x {
     width: 100%;
-    max-width: 1120px;
+    max-width: 1160px;
     display: flex;
     flex-direction: column;
-    gap: clamp(.85rem, 2.2vh, 1.35rem);
+    gap: clamp(.7rem, 1.9vh, 1.15rem);
+    position: relative;
   }
-  .ff-top-band {
+  .ff-hero-lane {
     display: grid;
-    grid-template-columns: minmax(220px, 310px) 1fr auto;
+    grid-template-columns: minmax(225px, 320px) 1fr minmax(175px, 240px);
     align-items: center;
-    gap: clamp(1rem, 2.8vw, 2rem);
-    padding-bottom: clamp(.65rem, 1.5vh, 1rem);
+    gap: clamp(.9rem, 2.5vw, 1.9rem);
+    padding-bottom: clamp(.55rem, 1.3vh, .85rem);
     border-bottom: 1px solid rgba(234, 181, 125, 0.24);
   }
-  .ff-pic-frame {
+  .ff-slash-wrap {
     position: relative;
-    overflow: hidden;
-    clip-path: polygon(6% 0, 100% 0, 94% 100%, 0% 100%);
     transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), filter .35s ease;
   }
-  .ff-pic-frame::after {
+  .ff-slash-wrap::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent2), var(--champagne), var(--accent));
-    opacity: .85;
+    inset: 6px -7px -6px 7px;
+    background: linear-gradient(135deg, rgba(234, 181, 125, 0.45), rgba(168, 92, 36, 0.12));
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    z-index: 0;
+    pointer-events: none;
+    transition: transform .35s ease, opacity .35s ease;
   }
-  .ff-pic-frame:hover {
+  .ff-slash-wrap:hover {
     transform: translateY(-4px) scale(1.025);
-    filter: drop-shadow(0 14px 26px rgba(234, 181, 125, 0.28));
+    filter: drop-shadow(0 14px 28px rgba(234, 181, 125, 0.32));
   }
-  .ff-pic-frame img {
+  .ff-slash-wrap:hover::before {
+    transform: translate(3px, 2px);
+  }
+  .ff-slash-clip {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  }
+  .ff-slash-clip img {
     width: 100%;
-    height: clamp(120px, 19vh, 162px);
+    height: clamp(112px, 17.5vh, 150px);
     object-fit: cover;
     display: block;
-    transition: transform .45s ease;
+    transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .ff-pic-frame:hover img {
-    transform: scale(1.07);
+  .ff-slash-wrap:hover .ff-slash-clip img {
+    transform: scale(1.08);
   }
-  .ff-role-tag {
-    display: inline-block;
-    font-size: .68rem;
+  .ff-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .66rem;
     font-weight: 800;
-    letter-spacing: .13em;
+    letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: .22rem;
-  }
-  .ff-note h3 {
-    font-size: clamp(.98rem, 2.1vh, 1.2rem);
-    color: var(--champagne);
-    font-weight: 800;
-    margin-bottom: .2rem;
-  }
-  .ff-note p {
-    color: var(--muted);
-    font-size: clamp(.8rem, 1.75vh, .94rem);
-    line-height: 1.45;
-    max-width: 44ch;
-  }
-  .ff-father-pillar {
-    text-align: right;
-    padding-left: 1rem;
-    border-left: 2px solid var(--accent);
-  }
-  .ff-father-pillar h3 {
-    font-size: clamp(.95rem, 2vh, 1.12rem);
-    color: var(--accent);
-    font-weight: 800;
     margin-bottom: .18rem;
   }
-  .ff-father-pillar p {
-    color: var(--muted);
-    font-size: clamp(.78rem, 1.7vh, .9rem);
-    line-height: 1.4;
-    max-width: 24ch;
+  .ff-kicker::before {
+    content: "";
+    width: 14px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--champagne), var(--accent));
   }
-  .ff-friends-grid {
+  .ff-copy h3 {
+    font-size: clamp(.95rem, 2vh, 1.16rem);
+    color: var(--champagne);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: .16rem;
+  }
+  .ff-copy p {
+    color: var(--muted);
+    font-size: clamp(.78rem, 1.68vh, .91rem);
+    line-height: 1.42;
+    max-width: 44ch;
+  }
+  .ff-father-zone {
+    text-align: right;
+    padding: .3rem .9rem .3rem 0;
+    border-right: 3px solid var(--accent);
+    background: linear-gradient(270deg, rgba(234, 181, 125, 0.1), transparent);
+  }
+  .ff-father-zone .ff-kicker {
+    justify-content: flex-end;
+  }
+  .ff-father-zone .ff-kicker::before {
+    display: none;
+  }
+  .ff-father-zone h3 {
+    font-size: clamp(.92rem, 1.9vh, 1.08rem);
+    color: var(--champagne);
+    font-weight: 800;
+    margin-bottom: .14rem;
+  }
+  .ff-father-zone p {
+    color: var(--muted);
+    font-size: clamp(.76rem, 1.62vh, .88rem);
+    line-height: 1.38;
+  }
+  .ff-duo-lane {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(.9rem, 2.4vw, 1.8rem);
+    gap: clamp(.85rem, 2.2vw, 1.7rem);
     align-items: center;
   }
-  .ff-friend-item {
+  .ff-duo-lane .ff-duo-item:nth-child(2) {
+    transform: translateX(10px);
+  }
+  .ff-duo-item {
     display: grid;
-    grid-template-columns: minmax(145px, 205px) 1fr;
+    grid-template-columns: minmax(140px, 195px) 1fr;
     align-items: center;
-    gap: clamp(.75rem, 1.8vw, 1.2rem);
+    gap: clamp(.7rem, 1.6vw, 1.15rem);
+    transition: transform .3s ease;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -836,10 +863,12 @@
     .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
-    .ff-top-band, .ff-friends-grid { grid-template-columns: 1fr; gap: .6rem; }
-    .ff-father-pillar { text-align: left; padding-left: .75rem; }
-    .ff-friend-item { grid-template-columns: 130px 1fr; gap: .65rem; }
-    .ff-pic-frame img { height: clamp(92px, 13vh, 118px); }
+    .ff-hero-lane, .ff-duo-lane { grid-template-columns: 1fr; gap: .55rem; }
+    .ff-duo-lane .ff-duo-item:nth-child(2) { transform: none; }
+    .ff-father-zone { text-align: left; padding: .2rem 0 .2rem .75rem; border-right: none; border-left: 3px solid var(--accent); background: linear-gradient(90deg, rgba(234, 181, 125, 0.1), transparent); }
+    .ff-father-zone .ff-kicker { justify-content: flex-start; }
+    .ff-duo-item { grid-template-columns: 125px 1fr; gap: .6rem; }
+    .ff-slash-clip img { height: clamp(86px, 12vh, 110px); }
   }
 </style>
 </head>
@@ -985,40 +1014,47 @@
     <!-- FAMILY AND FRIENDS -->
     <section id="family">
       <h2>Family and Friends</h2>
-      <div class="ff-arena">
-        <div class="ff-top-band">
-          <div class="ff-pic-frame" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
-            <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
+      <div class="ff-stage-x">
+        <div class="ff-hero-lane">
+          <div class="ff-slash-wrap" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
+            <div class="ff-slash-clip">
+              <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
+            </div>
           </div>
-          <div class="ff-note">
-            <span class="ff-role-tag">Mother</span>
+          <div class="ff-copy">
+            <span class="ff-kicker">Mother</span>
             <h3>Steady Heart & Home</h3>
             <p>She stands by me with patience, kindness, and quiet strength through every season.</p>
           </div>
-          <div class="ff-father-pillar">
-            <h3>Father</h3>
+          <div class="ff-father-zone">
+            <span class="ff-kicker">Father</span>
+            <h3>Anchor & Drive</h3>
             <p>Strength & encouragement</p>
           </div>
         </div>
 
-        <div class="ff-friends-grid">
-          <div class="ff-friend-item">
-            <div class="ff-pic-frame" onclick="openModal('images/IMG_2987.jpg')" title="Click to zoom in">
-              <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
+        <div class="ff-duo-lane">
+          <div class="ff-duo-item">
+            <div class="ff-slash-wrap" onclick="openModal('images/IMG_2987.jpg')" title="Click to zoom in">
+              <div class="ff-slash-clip">
+                <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
+              </div>
             </div>
-            <div class="ff-note">
-              <span class="ff-role-tag">Friend</span>
+            <div class="ff-copy">
+              <span class="ff-kicker">Friend</span>
               <h3>Real Vibes & Honest Talks</h3>
               <p>Someone I can share random stories, real laughs, and simple moments with.</p>
             </div>
           </div>
 
-          <div class="ff-friend-item">
-            <div class="ff-pic-frame" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
-              <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
+          <div class="ff-duo-item">
+            <div class="ff-slash-wrap" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+              <div class="ff-slash-clip">
+                <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
+              </div>
             </div>
-            <div class="ff-note">
-              <span class="ff-role-tag">Senior High Friends</span>
+            <div class="ff-copy">
+              <span class="ff-kicker">Senior High Friends</span>
               <h3>Golden Days Together</h3>
               <p>My senior high circle who turned ordinary school days into bright memories.</p>
             </div>
@@ -1135,7 +1171,7 @@ const pointerState = { x: -999, y: -999, active: false };
       setTimeout(() => spark.remove(), 650);
     }
 
-    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-pic-frame');
+    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-slash-wrap');
     ring.classList.toggle('hovering', Boolean(interactive));
   });
 
