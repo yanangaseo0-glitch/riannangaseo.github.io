@@ -724,7 +724,7 @@
     transform: scale(1.1);
   }
 
-  /* ---- Family & Friends (Maangas Borderless Angled Showcase) ---- */
+  /* ---- Family & Friends (Sharp Angled Edge & Borderless Editorial) ---- */
   .ff-arena {
     width: 100%;
     max-width: 1120px;
@@ -738,17 +738,27 @@
     align-items: center;
     gap: clamp(1rem, 2.8vw, 2rem);
     padding-bottom: clamp(.65rem, 1.5vh, 1rem);
-    border-bottom: 1px solid rgba(234, 181, 125, 0.22);
+    border-bottom: 1px solid rgba(234, 181, 125, 0.24);
   }
   .ff-pic-frame {
     position: relative;
     overflow: hidden;
-    clip-path: polygon(0 0, 94% 0, 100% 100%, 4% 100%);
+    clip-path: polygon(6% 0, 100% 0, 94% 100%, 0% 100%);
     transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1), filter .35s ease;
   }
+  .ff-pic-frame::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--champagne), var(--accent));
+    opacity: .85;
+  }
   .ff-pic-frame:hover {
-    transform: translateY(-4px) scale(1.02);
-    filter: drop-shadow(0 12px 24px rgba(234, 181, 125, 0.25));
+    transform: translateY(-4px) scale(1.025);
+    filter: drop-shadow(0 14px 26px rgba(234, 181, 125, 0.28));
   }
   .ff-pic-frame img {
     width: 100%;
@@ -758,13 +768,13 @@
     transition: transform .45s ease;
   }
   .ff-pic-frame:hover img {
-    transform: scale(1.06);
+    transform: scale(1.07);
   }
   .ff-role-tag {
     display: inline-block;
     font-size: .68rem;
     font-weight: 800;
-    letter-spacing: .12em;
+    letter-spacing: .13em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: .22rem;
@@ -784,7 +794,7 @@
   .ff-father-pillar {
     text-align: right;
     padding-left: 1rem;
-    border-left: 2px solid rgba(234, 181, 125, 0.45);
+    border-left: 2px solid var(--accent);
   }
   .ff-father-pillar h3 {
     font-size: clamp(.95rem, 2vh, 1.12rem);
@@ -982,8 +992,8 @@
           </div>
           <div class="ff-note">
             <span class="ff-role-tag">Mother</span>
-            <h3>Warm Hug & Safe Space</h3>
-            <p>Always there for me with love, care, and strength every day.</p>
+            <h3>Steady Heart & Home</h3>
+            <p>She stands by me with patience, kindness, and quiet strength through every season.</p>
           </div>
           <div class="ff-father-pillar">
             <h3>Father</h3>
@@ -997,9 +1007,9 @@
               <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
             </div>
             <div class="ff-note">
-              <span class="ff-role-tag">Friends</span>
-              <h3>Easy Laughs & Good Times</h3>
-              <p>Always fun to be with and easy to talk to.</p>
+              <span class="ff-role-tag">Friend</span>
+              <h3>Real Vibes & Honest Talks</h3>
+              <p>Someone I can share random stories, real laughs, and simple moments with.</p>
             </div>
           </div>
 
@@ -1008,9 +1018,9 @@
               <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
             </div>
             <div class="ff-note">
-              <span class="ff-role-tag">Friends</span>
-              <h3>Senior High Crew</h3>
-              <p>They were my friends in senior high who made school days happy and memorable.</p>
+              <span class="ff-role-tag">Senior High Friends</span>
+              <h3>Golden Days Together</h3>
+              <p>My senior high circle who turned ordinary school days into bright memories.</p>
             </div>
           </div>
         </div>
