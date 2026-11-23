@@ -724,37 +724,53 @@
     transform: scale(1.1);
   }
 
-  /* ---- Family & Friends ---- */
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 820px; width: 100%; }
-  .card { padding: clamp(1rem, 3vh, 1.6rem); transition: transform .25s, border-color .25s; }
-  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-  .card .icon { font-size: clamp(1.4rem, 4vh, 2rem); margin-bottom: .4rem; }
-  .card h3 { font-size: clamp(1rem, 2.4vh, 1.2rem); margin-bottom: .3rem; color: var(--accent); }
-  .card p { color: var(--muted); font-size: clamp(.8rem, 1.9vh, .95rem); line-height: 1.5; }
-  .family-photo {
+  /* ---- Family & Friends (Boxless Flowing Editorial Design) ---- */
+  .ff-stage {
     width: 100%;
-    height: clamp(145px, 23vh, 195px);
-    object-fit: cover;
-    object-position: top center;
-    border: none;
-    border-radius: 0;
-    margin-bottom: .75rem;
-    display: block;
-    transition: transform .3s ease, box-shadow .3s ease;
+    max-width: 1040px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.9rem, 2.4vh, 1.5rem);
   }
-  .friend-gallery {
+  .ff-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.2rem);
+    padding-bottom: clamp(.7rem, 1.8vh, 1.1rem);
+    border-bottom: 1px solid rgba(234, 181, 125, 0.18);
+  }
+  .ff-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .ff-photo {
+    width: 100%;
+    height: clamp(128px, 21vh, 175px);
+    object-fit: cover;
+    display: block;
+    transition: transform .35s ease, filter .35s ease;
+  }
+  .ff-photo:hover {
+    transform: scale(1.03);
+    filter: brightness(1.06);
+  }
+  .ff-friends-pair {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .55rem;
-    margin-bottom: .75rem;
+    gap: .65rem;
   }
-  .friend-gallery .family-photo {
-    height: clamp(115px, 18vh, 155px);
-    margin-bottom: 0;
+  .ff-caption h3 {
+    font-size: clamp(1rem, 2.3vh, 1.25rem);
+    color: var(--champagne);
+    font-weight: 700;
+    margin-bottom: .25rem;
   }
-  .card:hover .family-photo {
-    transform: scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  .ff-caption p {
+    color: var(--muted);
+    font-size: clamp(.82rem, 1.85vh, .98rem);
+    line-height: 1.5;
+    max-width: 48ch;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -772,6 +788,8 @@
     .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
+    .ff-row { grid-template-columns: 1fr; gap: .5rem; text-align: left; }
+    .ff-photo { height: clamp(105px, 16vh, 135px); }
   }
 </style>
 </head>
@@ -917,20 +935,24 @@
     <!-- FAMILY AND FRIENDS -->
     <section id="family">
       <h2>Family and Friends</h2>
-      <div class="cards">
-        <div class="card glass">
-          <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" class="family-photo" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
-          <h3>Mother</h3>
-          <p>My constant safe space, warm hug, and quiet strength through every step of my journey.</p>
-        </div>
-        <div class="card glass"><h3>Father</h3><p>Strength & encouragement</p></div>
-        <div class="card glass">
-          <div class="friend-gallery">
-            <img src="images/download.jpg" alt="Rianna with her Friend" class="family-photo" onclick="openModal('images/download.jpg')" title="Click to zoom in">
-            <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her Senior High friends" class="family-photo" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+      <div class="ff-stage">
+        <div class="ff-row">
+          <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" class="ff-photo" style="object-position: 52% 72%;" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
+          <div class="ff-caption">
+            <h3>Mother</h3>
+            <p>Always there to support me with care, love, and strength every day.</p>
           </div>
-          <h3>Friends</h3>
-          <p>Always fun to be with, bringing good laughs and happy memories from senior high.</p>
+        </div>
+
+        <div class="ff-row">
+          <div class="ff-friends-pair">
+            <img src="images/download.jpg" alt="Rianna with her friend" class="ff-photo" style="object-position: 75% 45%;" onclick="openModal('images/download.jpg')" title="Click to zoom in">
+            <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" class="ff-photo" style="object-position: 50% 42%;" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+          </div>
+          <div class="ff-caption">
+            <h3>Friends</h3>
+            <p>My friends from senior high who always bring fun, good laughs, and happy memories.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1043,7 +1065,7 @@ const pointerState = { x: -999, y: -999, active: false };
       setTimeout(() => spark.remove(), 650);
     }
 
-    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .family-photo');
+    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-photo');
     ring.classList.toggle('hovering', Boolean(interactive));
   });
 
