@@ -533,33 +533,49 @@
   .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .2rem; }
   .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
 
-  /* ---- ACHIEVEMENTS & SCHOOLS LAYOUT ---- */
+  /* ---- MAANGAS PA-ARTE ACHIEVEMENTS & SCHOOLS LAYOUT ---- */
   .achievements-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 1.2rem;
+    grid-template-columns: 1fr 2.1fr;
+    gap: 1.15rem;
     width: 100%;
-    max-width: 980px;
+    max-width: 1080px;
     align-items: start;
     margin: 0 auto;
+    padding: .55rem .8rem;
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(42, 23, 13, 0.72), rgba(14, 7, 4, 0.52));
+    border: 1px solid rgba(234, 181, 125, 0.34);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 232, 207, 0.14);
   }
   
   .awards-ticker-container {
-    height: 390px;
+    position: relative;
+    height: 386px;
     padding: 0.9rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: rgba(30, 18, 12, 0.84);
-    border: 2px solid rgba(234, 181, 125, 0.45);
-    box-shadow: 0 12px 35px rgba(168, 92, 36, 0.24);
+    background: linear-gradient(160deg, rgba(46, 26, 15, 0.88), rgba(20, 11, 6, 0.78));
+    border: 1.5px solid rgba(234, 181, 125, 0.45);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(168, 92, 36, 0.24);
     border-radius: 18px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+  }
+  .awards-ticker-container::before {
+    content: "✦ HONORS & MERITS";
+    display: block;
+    text-align: center;
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    color: var(--champagne);
+    margin-bottom: .18rem;
   }
   .awards-ticker-container h3 {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin-bottom: 0.6rem;
-    background: linear-gradient(90deg, #ffffff, var(--accent));
+    background: linear-gradient(90deg, #ffffff, var(--champagne), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -567,18 +583,22 @@
     text-transform: uppercase;
     letter-spacing: .1em;
     font-weight: 800;
+    padding-bottom: .45rem;
+    border-bottom: 1px dashed rgba(234, 181, 125, 0.35);
   }
   .ticker-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
   }
   .ticker-track {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.72rem;
     position: absolute;
     width: 100%;
     animation: scrollDown 16s linear infinite;
@@ -587,19 +607,20 @@
     animation-play-state: paused;
   }
   .ticker-img {
-    width: 105px !important;
-    height: 70px !important;
+    width: 112px !important;
+    height: 74px !important;
     object-fit: cover !important;
     border-radius: 8px !important;
+    clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
     border: 2px solid var(--accent);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.32s ease, border-color 0.32s ease;
     display: block;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.55);
   }
   .ticker-img:hover {
-    transform: scale(1.15) rotate(1deg);
-    border-color: #ffffff;
-    box-shadow: 0 0 22px rgba(234, 181, 125, 0.7);
+    transform: scale(1.14) translateY(-2px);
+    border-color: var(--champagne);
+    box-shadow: 0 0 24px rgba(234, 181, 125, 0.75);
   }
   @keyframes scrollDown {
     0% { transform: translateY(-50%); }
@@ -609,61 +630,91 @@
   .schools-columns-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    max-height: 390px;
+    gap: 0.78rem;
+    max-height: 386px;
     overflow-y: auto;
-    padding-right: 0.3rem;
+    padding: .15rem .35rem .15rem .1rem;
   }
   .schools-columns-grid::-webkit-scrollbar {
     width: 6px;
   }
   .schools-columns-grid::-webkit-scrollbar-thumb {
-    background: var(--accent2);
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
     border-radius: 99px;
   }
 
   .school-card {
-    padding: 0.85rem 0.6rem;
+    padding: 0.9rem 0.68rem 0.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background: rgba(34, 20, 13, 0.84);
-    border: 1.5px solid rgba(234, 181, 125, 0.35);
+    background: linear-gradient(155deg, rgba(46, 27, 17, 0.88), rgba(20, 11, 6, 0.74));
+    border: 1.5px solid rgba(234, 181, 125, 0.34);
     border-radius: 14px;
-    backdrop-filter: blur(8px);
-    transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(10px);
+    transition: transform .32s cubic-bezier(0.34, 1.56, 0.64, 1), border-color .32s ease, background .32s ease, box-shadow .32s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+  }
+  .school-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 70%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent, rgba(255, 244, 230, 0.24), transparent);
+    transition: left .65s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .school-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.015);
     border-color: var(--accent);
-    background: rgba(54, 32, 20, 0.92);
-    box-shadow: 0 10px 25px rgba(168, 92, 36, 0.32);
+    background: linear-gradient(155deg, rgba(64, 38, 23, 0.95), rgba(28, 15, 8, 0.85));
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 22px rgba(234, 181, 125, 0.26);
+  }
+  .school-card:hover::after {
+    left: 145%;
   }
   .school-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 3.5px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    opacity: 0.85;
+    background: linear-gradient(90deg, var(--accent2), var(--champagne), var(--accent));
+    opacity: 0.92;
     transition: opacity .3s ease;
   }
   .school-card:hover::before {
     opacity: 1;
+    box-shadow: 0 0 12px rgba(234, 181, 125, 0.7);
+  }
+  .school-step {
+    align-self: center;
+    font-size: .56rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    color: var(--accent);
+    background: rgba(16, 8, 4, 0.78);
+    border: 1px solid rgba(234, 181, 125, 0.38);
+    padding: .1rem .45rem;
+    border-radius: 999px;
+    margin-bottom: .35rem;
   }
   .school-card h3 { 
-    font-size: clamp(.75rem, 1.6vh, .9rem); 
-    margin-bottom: 0.25rem; 
-    color: var(--text); 
-    font-weight: 700; 
+    font-size: clamp(.76rem, 1.6vh, .92rem); 
+    margin-bottom: 0.24rem; 
+    background: linear-gradient(90deg, #ffffff, var(--champagne));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800; 
   }
   .school-card p { 
-    font-size: clamp(.65rem, 1.4vh, .78rem); 
+    font-size: clamp(.66rem, 1.4vh, .78rem); 
     color: var(--muted); 
-    line-height: 1.3;
+    line-height: 1.32;
   }
 
   /* ---- Lightbox Modal Zoom CSS ---- */
@@ -941,8 +992,9 @@
     .role-badges { justify-content: center; }
     .home-links { grid-template-columns: 1fr; width: 100%; max-width: 340px; margin-inline: auto; }
     .cta { justify-content: center; }
-    .achievements-layout { grid-template-columns: 1fr; }
-    .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
+    .achievements-layout { grid-template-columns: 1fr; padding: .45rem; }
+    .awards-ticker-container { height: 220px; }
+    .schools-columns-grid { grid-template-columns: repeat(2, 1fr); max-height: 240px; }
     .ff-stage-clean { padding: .45rem; }
     .ff-parents-row, .ff-friends-row { grid-template-columns: 1fr; gap: .48rem; }
     .ff-parent-slot { grid-template-columns: 130px 1fr; gap: .6rem; }
@@ -1076,13 +1128,14 @@
 
         <!-- Right Side: Schools in 3 Columns Grid -->
         <div class="schools-columns-grid">
-          <div class="school-card"><h3>Mogao Elementary</h3><p>Grades 1 to 3</p></div>
-          <div class="school-card"><h3>Colalo Elementary</h3><p>Grade 4</p></div>
-          <div class="school-card"><h3>Am-am Elementary</h3><p>Grade 5</p></div>
-          <div class="school-card"><h3>Colalo Elementary</h3><p>Grade 6 · Graduated</p></div>
-          <div class="school-card"><h3>Mankayan NHS</h3><p>Junior High School</p></div>
-          <div class="school-card"><h3>Mankayan NHS</h3><p>Senior High · With Honors</p></div>
-          <div class="school-card" style="grid-column: span 3; background: rgba(46, 28, 18, 0.88); border-color: var(--accent2);">
+          <div class="school-card"><span class="school-step">01 · ELEM</span><h3>Mogao Elementary</h3><p>Grades 1 to 3</p></div>
+          <div class="school-card"><span class="school-step">02 · ELEM</span><h3>Colalo Elementary</h3><p>Grade 4</p></div>
+          <div class="school-card"><span class="school-step">03 · ELEM</span><h3>Am-am Elementary</h3><p>Grade 5</p></div>
+          <div class="school-card"><span class="school-step">04 · ELEM</span><h3>Colalo Elementary</h3><p>Grade 6 · Graduated</p></div>
+          <div class="school-card"><span class="school-step">05 · JHS</span><h3>Mankayan NHS</h3><p>Junior High School</p></div>
+          <div class="school-card"><span class="school-step">06 · SHS</span><h3>Mankayan NHS</h3><p>Senior High · With Honors</p></div>
+          <div class="school-card" style="grid-column: span 3; background: linear-gradient(155deg, rgba(66, 39, 24, 0.94), rgba(26, 14, 8, 0.86)); border-color: var(--accent);">
+            <span class="school-step">07 · COLLEGE</span>
             <h3>University of the Cordilleras</h3>
             <p>College · Information Technology · Current</p>
           </div>
