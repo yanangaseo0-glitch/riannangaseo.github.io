@@ -808,21 +808,30 @@
     line-height: 1.4;
   }
   .ff-right-monolith {
-    padding: clamp(1rem, 2.5vh, 1.7rem) clamp(1rem, 2.2vw, 1.5rem);
+    padding: clamp(.85rem, 2vh, 1.35rem) clamp(.95rem, 2vw, 1.35rem);
     border-left: 3px solid var(--accent);
     background: linear-gradient(155deg, rgba(234, 181, 125, 0.14), rgba(168, 92, 36, 0.04) 70%, transparent);
     clip-path: polygon(0 0, 100% 6%, 95% 100%, 0 94%);
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+  }
+  .ff-father-shot {
+    height: clamp(148px, 23vh, 198px);
+  }
+  .ff-father-shot img {
+    height: 100%;
   }
   .ff-right-monolith h3 {
-    font-size: clamp(1.1rem, 2.4vh, 1.35rem);
+    font-size: clamp(1.05rem, 2.2vh, 1.28rem);
     color: var(--champagne);
     font-weight: 800;
-    margin-bottom: .35rem;
+    margin-bottom: .22rem;
   }
   .ff-right-monolith p {
     color: var(--muted);
-    font-size: clamp(.82rem, 1.75vh, .96rem);
-    line-height: 1.5;
+    font-size: clamp(.8rem, 1.7vh, .94rem);
+    line-height: 1.45;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -844,6 +853,7 @@
     .ff-friends-stagger .ff-stagger-card:nth-child(2) { transform: none; }
     .ff-right-monolith { clip-path: none; padding: .6rem 0 .6rem .85rem; }
     .ff-edge-shot img { height: clamp(84px, 11.5vh, 106px); }
+    .ff-father-shot { height: clamp(110px, 15vh, 140px); }
   }
 </style>
 </head>
@@ -1028,9 +1038,14 @@
         </div>
 
         <div class="ff-right-monolith">
-          <span class="ff-tag">Father</span>
-          <h3>Anchor & Drive</h3>
-          <p>Strength & encouragement</p>
+          <div class="ff-edge-shot ff-father-shot" onclick="openModal('images/Friendly Handshake by the River.png')" title="Click to zoom in">
+            <img src="images/Friendly Handshake by the River.png" alt="Rianna with her Father by the river" style="object-position: 50% 28%;">
+          </div>
+          <div>
+            <span class="ff-tag">Father</span>
+            <h3>Anchor & Drive</h3>
+            <p>Strength & encouragement</p>
+          </div>
         </div>
       </div>
     </section>
