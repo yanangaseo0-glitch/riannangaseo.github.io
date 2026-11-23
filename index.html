@@ -736,15 +736,14 @@
     height: clamp(145px, 23vh, 195px);
     object-fit: cover;
     object-position: top center;
-    border-radius: 12px;
-    border: 1.5px solid rgba(234, 181, 125, 0.5);
+    border: none;
+    border-radius: 0;
     margin-bottom: .75rem;
     display: block;
-    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    transition: transform .3s ease, box-shadow .3s ease;
   }
   .card:hover .family-photo {
     transform: scale(1.02);
-    border-color: var(--champagne);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
   }
   
