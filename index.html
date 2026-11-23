@@ -742,6 +742,16 @@
     display: block;
     transition: transform .3s ease, box-shadow .3s ease;
   }
+  .friend-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .55rem;
+    margin-bottom: .75rem;
+  }
+  .friend-gallery .family-photo {
+    height: clamp(115px, 18vh, 155px);
+    margin-bottom: 0;
+  }
   .card:hover .family-photo {
     transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
@@ -914,7 +924,14 @@
           <p>My constant safe space, warm hug, and quiet strength through every step of my journey.</p>
         </div>
         <div class="card glass"><h3>Father</h3><p>Strength & encouragement</p></div>
-        <div class="card glass"><h3>Friends</h3><p>Good company, laughter & shared memories</p></div>
+        <div class="card glass">
+          <div class="friend-gallery">
+            <img src="images/download.jpg" alt="Rianna with her Friend" class="family-photo" onclick="openModal('images/download.jpg')" title="Click to zoom in">
+            <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her Senior High friends" class="family-photo" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
+          </div>
+          <h3>Friends</h3>
+          <p>Always fun to be with, bringing good laughs and happy memories from senior high.</p>
+        </div>
       </div>
     </section>
 
