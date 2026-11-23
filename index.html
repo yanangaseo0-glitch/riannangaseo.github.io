@@ -674,9 +674,11 @@
     z-index: 999999;
     background: rgba(10, 5, 3, 0.92);
     backdrop-filter: blur(10px);
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
+    gap: .85rem;
   }
   .modal.active {
     display: flex !important;
@@ -688,7 +690,7 @@
   }
   .modal-content {
     max-width: 520px !important;
-    max-height: 82vh !important;
+    max-height: 68vh !important;
     width: auto !important;
     height: auto !important;
     object-fit: contain !important;
@@ -697,6 +699,31 @@
     box-shadow: 0 0 55px rgba(234, 181, 125, 0.45);
     background: var(--card);
     animation: zoomPop .28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .modal-caption {
+    display: none;
+    max-width: 520px;
+    text-align: center;
+    padding: .75rem 1.15rem;
+    border-radius: 14px;
+    background: rgba(28, 16, 9, 0.92);
+    border: 1px solid rgba(234, 181, 125, 0.45);
+  }
+  .modal-caption.visible {
+    display: block;
+  }
+  .modal-caption b {
+    display: block;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .2rem;
+  }
+  .modal-caption p {
+    color: var(--champagne);
+    font-size: .92rem;
+    line-height: 1.45;
   }
   @keyframes zoomPop {
     from { transform: scale(0.84); opacity: 0; }
@@ -727,36 +754,39 @@
   /* ---- Family & Friends (Asymmetric Split & Staggered Diagonal Edge) ---- */
   .ff-vibe-grid {
     width: 100%;
-    max-width: 1160px;
+    max-width: 1180px;
     display: grid;
-    grid-template-columns: 1.25fr .75fr;
-    gap: clamp(.85rem, 2.2vw, 1.8rem);
+    grid-template-columns: 1.45fr .72fr;
+    gap: clamp(.8rem, 2vw, 1.5rem);
     align-items: center;
   }
   .ff-left-stack {
     display: flex;
     flex-direction: column;
-    gap: clamp(.75rem, 1.8vh, 1.15rem);
+    gap: clamp(.65rem, 1.5vh, .95rem);
   }
   .ff-mother-feature {
     display: grid;
-    grid-template-columns: minmax(220px, 305px) 1fr;
+    grid-template-columns: minmax(195px, 260px) 1fr;
     align-items: center;
-    gap: clamp(.8rem, 2vw, 1.4rem);
+    gap: clamp(.75rem, 1.8vw, 1.25rem);
   }
   .ff-friends-stagger {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(.75rem, 1.8vw, 1.25rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(.65rem, 1.5vw, 1.05rem);
     align-items: start;
   }
   .ff-friends-stagger .ff-stagger-card:nth-child(2) {
-    transform: translateY(14px);
+    transform: translateY(10px);
+  }
+  .ff-friends-stagger .ff-stagger-card:nth-child(3) {
+    transform: translateY(4px);
   }
   .ff-stagger-card {
     display: flex;
     flex-direction: column;
-    gap: .45rem;
+    gap: .35rem;
   }
   .ff-edge-shot {
     position: relative;
@@ -779,33 +809,36 @@
   }
   .ff-edge-shot img {
     width: 100%;
-    height: clamp(104px, 16vh, 140px);
+    height: clamp(92px, 14vh, 122px);
     object-fit: cover;
     display: block;
     transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ff-mother-feature .ff-edge-shot img {
+    height: clamp(98px, 15vh, 130px);
   }
   .ff-edge-shot:hover img {
     transform: scale(1.08);
   }
   .ff-tag {
     display: inline-block;
-    font-size: .65rem;
+    font-size: .64rem;
     font-weight: 800;
-    letter-spacing: .16em;
+    letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: .14rem;
+    margin-bottom: .12rem;
   }
   .ff-text h3 {
-    font-size: clamp(.92rem, 1.95vh, 1.12rem);
+    font-size: clamp(.86rem, 1.8vh, 1.02rem);
     color: var(--champagne);
     font-weight: 800;
-    margin-bottom: .14rem;
+    margin-bottom: .12rem;
   }
   .ff-text p {
     color: var(--muted);
-    font-size: clamp(.76rem, 1.62vh, .89rem);
-    line-height: 1.4;
+    font-size: clamp(.72rem, 1.5vh, .84rem);
+    line-height: 1.35;
   }
   .ff-right-monolith {
     padding: clamp(.85rem, 2vh, 1.35rem) clamp(.95rem, 2vw, 1.35rem);
@@ -849,11 +882,12 @@
     .cta { justify-content: center; }
     .achievements-layout { grid-template-columns: 1fr; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); }
-    .ff-vibe-grid, .ff-mother-feature, .ff-friends-stagger { grid-template-columns: 1fr; gap: .55rem; }
-    .ff-friends-stagger .ff-stagger-card:nth-child(2) { transform: none; }
+    .ff-vibe-grid, .ff-mother-feature, .ff-friends-stagger { grid-template-columns: 1fr; gap: .5rem; }
+    .ff-friends-stagger .ff-stagger-card:nth-child(2),
+    .ff-friends-stagger .ff-stagger-card:nth-child(3) { transform: none; }
     .ff-right-monolith { clip-path: none; padding: .6rem 0 .6rem .85rem; }
-    .ff-edge-shot img { height: clamp(84px, 11.5vh, 106px); }
-    .ff-father-shot { height: clamp(110px, 15vh, 140px); }
+    .ff-edge-shot img, .ff-mother-feature .ff-edge-shot img { height: clamp(78px, 10.5vh, 98px); }
+    .ff-father-shot { height: clamp(104px, 14vh, 130px); }
   }
 </style>
 </head>
@@ -1002,7 +1036,7 @@
       <div class="ff-vibe-grid">
         <div class="ff-left-stack">
           <div class="ff-mother-feature">
-            <div class="ff-edge-shot" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png')" title="Click to zoom in">
+            <div class="ff-edge-shot" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png', 'Mother', 'Thank you, Mom, for always loving me and supporting me every day.')" title="Click to zoom in">
               <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
             </div>
             <div class="ff-text">
@@ -1014,31 +1048,42 @@
 
           <div class="ff-friends-stagger">
             <div class="ff-stagger-card">
-              <div class="ff-edge-shot" onclick="openModal('images/IMG_2987.jpg')" title="Click to zoom in">
-                <img src="images/IMG_2987.jpg" alt="Rianna with her friend" style="object-position: 75% 45%;">
+              <div class="ff-edge-shot" onclick="openModal('images/IMG_2987.jpg', 'Bestfriend', 'Thank you for always listening, laughing with me, and being there.')" title="Click to zoom in">
+                <img src="images/IMG_2987.jpg" alt="Rianna with her Bestfriend" style="object-position: 75% 45%;">
               </div>
               <div class="ff-text">
-                <span class="ff-tag">Friend</span>
+                <span class="ff-tag">Bestfriend</span>
                 <h3>Real Vibes & Honest Talks</h3>
                 <p>Someone I can share random stories, real laughs, and simple moments with.</p>
               </div>
             </div>
 
             <div class="ff-stagger-card">
-              <div class="ff-edge-shot" onclick="openModal('images/Five Friends at a Sparkling Celebration.png')" title="Click to zoom in">
-                <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her senior high friends" style="object-position: 50% 42%;">
+              <div class="ff-edge-shot" onclick="openModal('images/Five Friends at a Sparkling Celebration.png', 'Senior highschool friends', 'Thank you for making my senior high school days fun and unforgettable.')" title="Click to zoom in">
+                <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her Senior highschool friends" style="object-position: 50% 42%;">
               </div>
               <div class="ff-text">
-                <span class="ff-tag">Senior High Friends</span>
+                <span class="ff-tag">Senior highschool friends</span>
                 <h3>Golden Days Together</h3>
                 <p>My senior high circle who turned ordinary school days into bright memories.</p>
+              </div>
+            </div>
+
+            <div class="ff-stagger-card">
+              <div class="ff-edge-shot" onclick="openModal('images/Messenger_creation_5CAFC67C-8220-464E-9279-969440D2623B.jpg', 'Childhood', 'Thank you for the sweet childhood memories and growing up with me.')" title="Click to zoom in">
+                <img src="images/Messenger_creation_5CAFC67C-8220-464E-9279-969440D2623B.jpg" alt="Rianna with her Childhood friends" style="object-position: 50% 35%;">
+              </div>
+              <div class="ff-text">
+                <span class="ff-tag">Childhood</span>
+                <h3>Early Days & Fun</h3>
+                <p>Simple growing-up days filled with shared food, smiles, and easy company.</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="ff-right-monolith">
-          <div class="ff-edge-shot ff-father-shot" onclick="openModal('images/Friendly Handshake by the River.png')" title="Click to zoom in">
+          <div class="ff-edge-shot ff-father-shot" onclick="openModal('images/Friendly Handshake by the River.png', 'Father', 'Thank you, Dad, for your strength, guidance, and constant encouragement.')" title="Click to zoom in">
             <img src="images/Friendly Handshake by the River.png" alt="Rianna with her Father by the river" style="object-position: 50% 28%;">
           </div>
           <div>
@@ -1064,6 +1109,10 @@
 <div id="imageModal" class="modal" onclick="closeModal()">
   <button class="modal-close" onclick="closeModal()">&times;</button>
   <img id="modalImg" class="modal-content" src="" alt="Zoomed Image">
+  <div id="modalCaption" class="modal-caption" onclick="event.stopPropagation()">
+    <b id="modalTitle"></b>
+    <p id="modalThankYou"></p>
+  </div>
 </div>
 
 <script>
@@ -1111,10 +1160,23 @@ go(location.hash.slice(1) || 'home', false);
 addEventListener('hashchange', () => go(location.hash.slice(1), false));
 
 /* ---------- Lightbox Modal Functions ---------- */
-function openModal(imgSrc) {
+function openModal(imgSrc, label = '', thankYouMsg = '') {
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalThankYou = document.getElementById('modalThankYou');
+
   modalImg.src = imgSrc;
+  if (thankYouMsg) {
+    modalTitle.textContent = label;
+    modalThankYou.textContent = thankYouMsg;
+    modalCaption.classList.add('visible');
+  } else {
+    modalTitle.textContent = '';
+    modalThankYou.textContent = '';
+    modalCaption.classList.remove('visible');
+  }
   modal.classList.add('active');
 }
 function closeModal() {
