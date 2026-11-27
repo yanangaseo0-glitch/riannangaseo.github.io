@@ -229,7 +229,7 @@
   }
   nav {
     display: flex; justify-content: center; gap: .35rem; flex-wrap: wrap;
-    padding: clamp(.55rem, 1.8vh, 1.05rem) 1rem;
+    padding: clamp(.5rem, 1.5vh, .9rem) 1rem;
   }
   nav button {
     background: rgba(24, 14, 9, 0.65);
@@ -257,7 +257,7 @@
   section {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 0 clamp(1rem, 4vw, 3rem) clamp(.5rem, 2vh, 1.5rem);
+    padding: 0 clamp(.85rem, 3vw, 2.2rem) clamp(.4rem, 1.5vh, 1rem);
     opacity: 0; visibility: hidden; transform: translateY(18px) scale(.985);
     transition: opacity .5s ease, transform .5s ease, visibility 0s .5s;
     overflow: hidden;
@@ -267,7 +267,7 @@
     transition: opacity .5s ease, transform .5s ease, visibility 0s;
   }
   h2 {
-    font-size: clamp(1.3rem, 4vh, 2.2rem); margin-bottom: clamp(.5rem, 1.5vh, 1rem);
+    font-size: clamp(1.25rem, 3.6vh, 2.05rem); margin-bottom: clamp(.4rem, 1.2vh, .85rem);
     background: linear-gradient(90deg, #ffffff, var(--accent), var(--accent2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
     font-weight: 800;
@@ -290,7 +290,6 @@
     position: relative;
   }
 
-  /* Full Fitted Rectangle Showcase */
   .showcase-wrap {
     position: relative;
     flex: none;
@@ -357,7 +356,6 @@
     transform: scale(1.05);
   }
 
-  /* Subtle zoom hint badge on hover */
   .zoom-badge {
     position: absolute;
     top: 12px;
@@ -381,7 +379,6 @@
     transform: scale(1.04);
   }
 
-  /* Floating Signature Pill overlapping bottom-right of portrait */
   .floating-pill {
     position: absolute;
     bottom: 14px;
@@ -409,7 +406,6 @@
     display: inline-block;
   }
 
-  /* Right Side Editorial Content */
   .hero-info { flex: 1; min-width: 0; }
   .eyebrow {
     display: inline-flex; align-items: center; gap: .55rem;
@@ -459,7 +455,6 @@
   }
   .hero p strong { color: var(--text); }
 
-  /* Contact & Social cards on Homepage */
   .home-links {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -524,14 +519,117 @@
     color: #160c06; border: none; font-weight: 700;
   }
 
-  /* ---- About ---- */
-  .about { max-width: 760px; width: 100%; }
-  .about p { color: var(--muted); line-height: 1.55; font-size: clamp(.85rem, 2vh, 1.05rem); margin-bottom: .7rem; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .7rem; margin-top: clamp(.5rem, 2vh, 1rem); }
-  .fact { padding: .8rem 1rem; transition: transform .2s, border-color .2s; }
-  .fact:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .fact b { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .2rem; }
-  .fact span { font-size: clamp(.85rem, 1.9vh, 1rem); }
+  /* ---- MAXIMIZED PERSONAL INFORMATION & SKILLS ---- */
+  .about {
+    max-width: 1180px;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: clamp(.65rem, 1.5vh, 1.05rem) clamp(.85rem, 1.8vw, 1.35rem);
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(42, 23, 13, 0.76), rgba(14, 7, 4, 0.58));
+    border: 1px solid rgba(234, 181, 125, 0.34);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 232, 207, 0.14);
+  }
+  .about::-webkit-scrollbar { width: 6px; }
+  .about::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 99px;
+  }
+  .about-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .5rem;
+    margin-bottom: .35rem;
+  }
+  .about-bio {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .55rem;
+    margin-bottom: .65rem;
+  }
+  .about-bio p {
+    color: var(--muted);
+    line-height: 1.42;
+    font-size: clamp(.72rem, 1.45vh, .84rem);
+    background: rgba(20, 11, 6, 0.55);
+    border: 1px solid rgba(234, 181, 125, 0.2);
+    border-radius: 12px;
+    padding: .5rem .65rem;
+    margin: 0;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: .45rem;
+    margin-bottom: .65rem;
+  }
+  .fact {
+    padding: .45rem .6rem;
+    border-radius: 12px;
+    transition: transform .2s, border-color .2s, background .2s;
+  }
+  .fact:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: rgba(44, 25, 15, 0.92);
+  }
+  .fact b {
+    display: block;
+    font-size: .58rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--accent);
+    margin-bottom: .1rem;
+  }
+  .fact span {
+    font-size: clamp(.72rem, 1.45vh, .84rem);
+    color: var(--champagne);
+    font-weight: 500;
+    display: block;
+    line-height: 1.25;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .55rem;
+  }
+  .skill-box {
+    padding: .55rem .7rem;
+    border-radius: 14px;
+    background: linear-gradient(155deg, rgba(46, 27, 17, 0.88), rgba(20, 11, 6, 0.76));
+    border: 1px solid rgba(234, 181, 125, 0.36);
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .skill-box:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .skill-box h3 {
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--accent);
+    margin-bottom: .38rem;
+    font-weight: 800;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .32rem;
+  }
+  .skill-tags span {
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--champagne);
+    background: rgba(168, 92, 36, 0.25);
+    border: 1px solid rgba(234, 181, 125, 0.35);
+    padding: .18rem .52rem;
+    border-radius: 999px;
+  }
 
   /* ---- MAANGAS PA-ARTE ACHIEVEMENTS & SCHOOLS LAYOUT ---- */
   .achievements-layout {
@@ -862,7 +960,6 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.52), 0 0 20px rgba(234, 181, 125, 0.16);
   }
 
-  /* Pa-arteng angled shot frame + corner accents + shimmer sweep */
   .ff-edge-shot {
     position: relative;
     overflow: hidden;
@@ -992,6 +1089,9 @@
     .role-badges { justify-content: center; }
     .home-links { grid-template-columns: 1fr; width: 100%; max-width: 340px; margin-inline: auto; }
     .cta { justify-content: center; }
+    .about-bio { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skills-grid { grid-template-columns: 1fr; }
     .achievements-layout { grid-template-columns: 1fr; padding: .45rem; }
     .awards-ticker-container { height: 220px; }
     .schools-columns-grid { grid-template-columns: repeat(2, 1fr); max-height: 240px; }
@@ -1081,10 +1181,16 @@
     <!-- PERSONAL INFORMATION -->
     <section id="personal">
       <div class="about">
-        <h2>Personal Information</h2>
-        <p>Hello! I’m Rianna Ngaseo, an Information Technology student at the University of the Cordilleras. I enjoy learning about computers, technology, and how digital tools can make everyday life easier.</p>
-        <p>I’m a curious person who likes discovering new things and exploring new ideas. As an IT student, I want to improve my skills, become more creative, and gain experience in programming and web development. I see every challenge as a chance to learn and grow.</p>
-        <p>When I’m not studying, I enjoy spending time on my interests and trying new things. Through this portfolio, I hope to share my background, educational journey, and the projects and experiences I gain along the way.</p>
+        <div class="about-header">
+          <h2>Personal Information</h2>
+        </div>
+
+        <div class="about-bio">
+          <p>Hello! I’m Rianna Ngaseo, an Information Technology student at the University of the Cordilleras. I enjoy learning about computers, technology, and how digital tools can make everyday life easier.</p>
+          <p>I’m a curious person who likes discovering new things and exploring new ideas. As an IT student, I want to improve my skills, become more creative, and gain experience in programming and web development. I see every challenge as a chance to learn and grow.</p>
+          <p>When I’m not studying, I enjoy spending time on my interests and trying new things. Through this portfolio, I hope to share my background, educational journey, and the projects and experiences I gain along the way.</p>
+        </div>
+
         <div class="facts">
           <div class="fact glass"><b>Full Name</b><span>Rianna Ngaseo</span></div>
           <div class="fact glass"><b>Birthday</b><span>October 17, 2008</span></div>
@@ -1094,6 +1200,48 @@
           <div class="fact glass"><b>Civil Status</b><span>Single</span></div>
           <div class="fact glass"><b>Course</b><span>Information Technology</span></div>
           <div class="fact glass"><b>School</b><span>University of the Cordilleras</span></div>
+          <div class="fact glass"><b>Bloodtype</b><span>B</span></div>
+          <div class="fact glass"><b>Eye Color</b><span>Brown</span></div>
+          <div class="fact glass"><b>Nationality</b><span>Filipino (Kankana-ey)</span></div>
+          <div class="fact glass"><b>Zodiac Sign</b><span>Libra</span></div>
+          <div class="fact glass"><b>Favorite Food</b><span>Buldak, shawarma, fries</span></div>
+          <div class="fact glass"><b>Favorite Drink</b><span>Don Mac</span></div>
+          <div class="fact glass"><b>Allergy</b><span>None</span></div>
+          <div class="fact glass"><b>Birth Time</b><span>11:09</span></div>
+          <div class="fact glass"><b>Birthplace</b><span>Lutheran, Buguias</span></div>
+          <div class="fact glass"><b>Clothing Size</b><span>Shirt-S / Pant-M</span></div>
+          <div class="fact glass"><b>Favorite Color</b><span>Black, white, lavender</span></div>
+          <div class="fact glass"><b>Religion</b><span>Bethel</span></div>
+          <div class="fact glass"><b>Shoe Size</b><span>37-38</span></div>
+          <div class="fact glass"><b>Home Address</b><span>Mankayan, Benguet</span></div>
+          <div class="fact glass" style="grid-column: span 3;"><b>Motto</b><span>It is what it is</span></div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-box">
+            <h3>Digital Tools</h3>
+            <div class="skill-tags">
+              <span>Visual Studio Code</span>
+              <span>Canva</span>
+              <span>Ibis Paint</span>
+              <span>Capcut</span>
+              <span>Adobe InDesign</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Development Skills</h3>
+            <div class="skill-tags">
+              <span>Html/CSS</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Soft Skills</h3>
+            <div class="skill-tags">
+              <span>Self Learner</span>
+              <span>Collaboration</span>
+              <span>Fast Learner</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1345,7 +1493,7 @@ const pointerState = { x: -999, y: -999, active: false };
       setTimeout(() => spark.remove(), 650);
     }
 
-    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-edge-shot');
+    const interactive = e.target.closest('a, button, .ticker-img, .school-card, .fact, .card, .portrait-rect, .ff-edge-shot, .skill-box');
     ring.classList.toggle('hovering', Boolean(interactive));
   });
 
