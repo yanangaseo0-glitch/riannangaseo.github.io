@@ -1,5 +1,4 @@
- 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -933,47 +932,44 @@
     transform: scale(1.1);
   }
 
-  /* ---- MAANGAS PA-ARTE FAMILY (MOM & DAD ONLY) ---- */
+  /* ---- MAXIMIZED 2x2 FAMILY & FRIENDS (MOM, DAD, SELF, FRIENDS) ---- */
   .ff-stage-clean {
     width: 100%;
-    max-width: 1200px;
-    min-height: clamp(320px, 56vh, 470px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: clamp(.8rem, 2vh, 1.3rem);
-    padding: clamp(.9rem, 2.2vh, 1.5rem) clamp(.9rem, 2vw, 1.45rem);
+    max-width: 1240px;
+    height: clamp(390px, 68vh, 560px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: clamp(.75rem, 1.6vw, 1.15rem);
+    padding: clamp(.7rem, 1.5vh, 1.05rem) clamp(.8rem, 1.6vw, 1.2rem);
     border-radius: 24px;
     background: linear-gradient(155deg, rgba(42, 23, 13, 0.74), rgba(14, 7, 4, 0.56));
     border: 1px solid rgba(234, 181, 125, 0.36);
     box-shadow: 0 22px 54px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 232, 207, 0.16);
   }
-  .ff-parents-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1rem, 2.4vw, 1.8rem);
-    height: 100%;
-  }
   .ff-parent-slot {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(195px, 260px) 1fr;
+    grid-template-columns: minmax(170px, 225px) 1fr;
     align-items: center;
-    gap: clamp(.85rem, 1.8vw, 1.35rem);
-    padding: clamp(.75rem, 1.6vh, 1.15rem) clamp(.85rem, 1.6vw, 1.2rem);
+    height: 100%;
+    gap: clamp(.75rem, 1.5vw, 1.15rem);
+    padding: clamp(.6rem, 1.3vh, .95rem) clamp(.75rem, 1.4vw, 1.05rem);
     border-radius: 18px;
-    background: linear-gradient(135deg, rgba(48, 27, 16, 0.72), rgba(19, 10, 5, 0.52));
-    border: 1.5px solid rgba(234, 181, 125, 0.32);
+    background: linear-gradient(135deg, rgba(48, 27, 16, 0.76), rgba(19, 10, 5, 0.56));
+    border: 1.5px solid rgba(234, 181, 125, 0.34);
     transition: transform .32s cubic-bezier(0.22, 1, 0.36, 1), border-color .32s ease, box-shadow .32s ease;
   }
   .ff-parent-slot:hover {
-    transform: translateY(-4px);
-    border-color: rgba(234, 181, 125, 0.72);
+    transform: translateY(-3px);
+    border-color: rgba(234, 181, 125, 0.75);
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.52), 0 0 24px rgba(234, 181, 125, 0.22);
   }
 
   .ff-edge-shot {
     position: relative;
+    height: 100%;
+    min-height: 112px;
     overflow: hidden;
     clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
     border-radius: 8px;
@@ -1030,7 +1026,7 @@
 
   .ff-parent-slot .ff-edge-shot img {
     width: 100%;
-    height: clamp(140px, 24vh, 215px);
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1043,31 +1039,31 @@
     display: inline-flex;
     align-items: center;
     gap: .35rem;
-    font-size: .68rem;
+    font-size: .66rem;
     font-weight: 800;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: .22rem;
+    margin-bottom: .18rem;
   }
   .ff-tag::before {
     content: "✦";
-    font-size: .72rem;
+    font-size: .7rem;
     color: var(--champagne);
   }
   .ff-text h3 {
-    font-size: clamp(1.02rem, 2.2vh, 1.32rem);
+    font-size: clamp(.98rem, 2vh, 1.22rem);
     background: linear-gradient(90deg, #ffffff, var(--champagne), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     font-weight: 800;
-    margin-bottom: .24rem;
+    margin-bottom: .22rem;
   }
   .ff-text p {
     color: var(--muted);
-    font-size: clamp(.82rem, 1.75vh, .98rem);
-    line-height: 1.48;
+    font-size: clamp(.78rem, 1.6vh, .94rem);
+    line-height: 1.42;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -1090,10 +1086,9 @@
     .awards-ticker-container { height: 195px; }
     .schools-columns-grid { grid-template-columns: 1fr; height: auto; overflow-y: visible; }
     .school-card { height: auto; }
-    .ff-stage-clean { min-height: auto; padding: .55rem; }
-    .ff-parents-row { grid-template-columns: 1fr; gap: .65rem; }
-    .ff-parent-slot { grid-template-columns: 135px 1fr; gap: .7rem; padding: .6rem; }
-    .ff-parent-slot .ff-edge-shot img { height: clamp(92px, 14vh, 118px); }
+    .ff-stage-clean { grid-template-columns: 1fr; grid-template-rows: none; height: auto; max-height: 100%; overflow-y: auto; padding: .5rem; gap: .55rem; }
+    .ff-parent-slot { grid-template-columns: 118px 1fr; height: auto; gap: .65rem; padding: .5rem; }
+    .ff-edge-shot { min-height: 86px; }
   }
 </style>
 </head>
@@ -1302,33 +1297,55 @@
       </div>
     </section>
 
-    <!-- FAMILY (MOM & DAD ONLY) -->
+    <!-- FAMILY AND FRIENDS (2x2: MOM, DAD, SELF, FRIENDS) -->
     <section id="family">
       <h2>Family and Friends</h2>
       <div class="ff-stage-clean">
-        <div class="ff-parents-row">
-          <div class="ff-parent-slot">
-            <div class="ff-edge-shot" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png', 'Mother', 'Thank you, Mom, for always loving me and supporting me every day.')" title="Click to zoom in">
-              <span class="ff-num-badge">01 · MOM</span>
-              <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
-            </div>
-            <div class="ff-text">
-              <span class="ff-tag">Mother</span>
-              <h3>Steady Heart & Home</h3>
-              <p>She stands by me with patience, kindness, and quiet strength through every season.</p>
-            </div>
+        <div class="ff-parent-slot">
+          <div class="ff-edge-shot" onclick="openModal('images/Sunny Palm-Lined Promenade Embrace.png', 'Mother', 'Thank you, Mom, for always loving me, guiding me, and supporting me through every season.')" title="Click to zoom in">
+            <span class="ff-num-badge">01 · MOM</span>
+            <img src="images/Sunny Palm-Lined Promenade Embrace.png" alt="Rianna with her Mother" style="object-position: 52% 72%;">
           </div>
+          <div class="ff-text">
+            <span class="ff-tag">Mother</span>
+            <h3>Steady Heart & Home</h3>
+            <p>Thank you, Mom, for always loving me, guiding me, and supporting me through every season.</p>
+          </div>
+        </div>
 
-          <div class="ff-parent-slot">
-            <div class="ff-edge-shot" onclick="openModal('images/Friendly Handshake by the River.png', 'Father', 'Thank you, Dad, for your strength, guidance, and constant encouragement.')" title="Click to zoom in">
-              <span class="ff-num-badge">02 · DAD</span>
-              <img src="images/Friendly Handshake by the River.png" alt="Rianna with her Father by the river" style="object-position: 50% 28%;">
-            </div>
-            <div class="ff-text">
-              <span class="ff-tag">Father</span>
-              <h3>Anchor & Drive</h3>
-              <p>Strength & encouragement</p>
-            </div>
+        <div class="ff-parent-slot">
+          <div class="ff-edge-shot" onclick="openModal('images/Friendly Handshake by the River.png', 'Father', 'Thank you, Dad, for your strength, wisdom, and constant encouragement in every step I take.')" title="Click to zoom in">
+            <span class="ff-num-badge">02 · DAD</span>
+            <img src="images/Friendly Handshake by the River.png" alt="Rianna with her Father by the river" style="object-position: 50% 28%;">
+          </div>
+          <div class="ff-text">
+            <span class="ff-tag">Father</span>
+            <h3>Anchor & Drive</h3>
+            <p>Thank you, Dad, for your strength, wisdom, and constant encouragement in every step I take.</p>
+          </div>
+        </div>
+
+        <div class="ff-parent-slot">
+          <div class="ff-edge-shot" onclick="openModal('Screenshot_2026-11-28-08-41-01-35_99c04817c0de5652397fc8b56c3b3817.jpg', 'Self', 'Thank you to myself for staying resilient, learning new things every day, and keeping moving forward—it is what it is.')" title="Click to zoom in">
+            <span class="ff-num-badge">03 · SELF</span>
+            <img src="Screenshot_2026-11-28-08-41-01-35_99c04817c0de5652397fc8b56c3b3817.jpg" alt="Selfie of Rianna wearing a black cap and black hoodie" style="object-position: 50% 22%;">
+          </div>
+          <div class="ff-text">
+            <span class="ff-tag">Self</span>
+            <h3>Bold Cap, Quiet Grit</h3>
+            <p>Thank you to myself for staying resilient, learning new things every day, and keeping moving forward—it is what it is.</p>
+          </div>
+        </div>
+
+        <div class="ff-parent-slot">
+          <div class="ff-edge-shot" onclick="openModal('acff6e9d-4c14-4b43-8d42-cca1cd529e59.jpg', 'Friends', 'Thank you, friends, for the late-night laughs, shared food, and unforgettable moments through every chapter.')" title="Click to zoom in">
+            <span class="ff-num-badge">04 · FRIENDS</span>
+            <img src="acff6e9d-4c14-4b43-8d42-cca1cd529e59.jpg" alt="Collage of Rianna with her friends" style="object-position: 50% 35%;">
+          </div>
+          <div class="ff-text">
+            <span class="ff-tag">Friends</span>
+            <h3>Shared Laughs & Memories</h3>
+            <p>Thank you, friends, for the late-night laughs, shared food, and unforgettable moments through every chapter.</p>
           </div>
         </div>
       </div>
