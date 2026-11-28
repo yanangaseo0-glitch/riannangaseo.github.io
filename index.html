@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+ 
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -932,71 +933,50 @@
     transform: scale(1.1);
   }
 
-  /* ---- MAANGAS PA-ARTE FAMILY & FRIENDS DESIGN ---- */
+  /* ---- MAANGAS PA-ARTE FAMILY (MOM & DAD ONLY) ---- */
   .ff-stage-clean {
     width: 100%;
     max-width: 1200px;
+    min-height: clamp(320px, 56vh, 470px);
     display: flex;
     flex-direction: column;
-    gap: clamp(.65rem, 1.5vh, 1rem);
-    padding: clamp(.45rem, 1vh, .75rem) clamp(.65rem, 1.4vw, 1.1rem);
-    border-radius: 22px;
-    background: linear-gradient(155deg, rgba(42, 23, 13, 0.72), rgba(14, 7, 4, 0.52));
-    border: 1px solid rgba(234, 181, 125, 0.34);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 232, 207, 0.14);
+    justify-content: center;
+    gap: clamp(.8rem, 2vh, 1.3rem);
+    padding: clamp(.9rem, 2.2vh, 1.5rem) clamp(.9rem, 2vw, 1.45rem);
+    border-radius: 24px;
+    background: linear-gradient(155deg, rgba(42, 23, 13, 0.74), rgba(14, 7, 4, 0.56));
+    border: 1px solid rgba(234, 181, 125, 0.36);
+    box-shadow: 0 22px 54px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 232, 207, 0.16);
   }
   .ff-parents-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(.8rem, 2vw, 1.5rem);
-    padding-bottom: clamp(.55rem, 1.2vh, .8rem);
-    border-bottom: 1px dashed rgba(234, 181, 125, 0.38);
+    gap: clamp(1rem, 2.4vw, 1.8rem);
+    height: 100%;
   }
   .ff-parent-slot {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(175px, 230px) 1fr;
+    grid-template-columns: minmax(195px, 260px) 1fr;
     align-items: center;
-    gap: clamp(.65rem, 1.4vw, 1rem);
-    padding: .45rem .65rem;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(48, 27, 16, 0.62), rgba(19, 10, 5, 0.42));
-    border: 1px solid rgba(234, 181, 125, 0.24);
+    gap: clamp(.85rem, 1.8vw, 1.35rem);
+    padding: clamp(.75rem, 1.6vh, 1.15rem) clamp(.85rem, 1.6vw, 1.2rem);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(48, 27, 16, 0.72), rgba(19, 10, 5, 0.52));
+    border: 1.5px solid rgba(234, 181, 125, 0.32);
     transition: transform .32s cubic-bezier(0.22, 1, 0.36, 1), border-color .32s ease, box-shadow .32s ease;
   }
   .ff-parent-slot:hover {
-    transform: translateY(-3px);
-    border-color: rgba(234, 181, 125, 0.65);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.48), 0 0 22px rgba(234, 181, 125, 0.18);
-  }
-  .ff-friends-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(.65rem, 1.4vw, 1.05rem);
-    align-items: stretch;
-  }
-  .ff-friend-slot {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: .38rem;
-    padding: .45rem .55rem .55rem;
-    border-radius: 16px;
-    background: linear-gradient(160deg, rgba(44, 24, 14, 0.58), rgba(17, 9, 5, 0.38));
-    border: 1px solid rgba(234, 181, 125, 0.22);
-    transition: transform .32s cubic-bezier(0.22, 1, 0.36, 1), border-color .32s ease, box-shadow .32s ease;
-  }
-  .ff-friend-slot:hover {
     transform: translateY(-4px);
-    border-color: rgba(234, 181, 125, 0.62);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.52), 0 0 20px rgba(234, 181, 125, 0.16);
+    border-color: rgba(234, 181, 125, 0.72);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.52), 0 0 24px rgba(234, 181, 125, 0.22);
   }
 
   .ff-edge-shot {
     position: relative;
     overflow: hidden;
     clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
-    border-radius: 6px;
+    border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
     transition: transform .36s cubic-bezier(0.22, 1, 0.36, 1), filter .36s ease;
   }
@@ -1018,7 +998,7 @@
     left: 4%;
     right: 4%;
     bottom: 0;
-    height: 3px;
+    height: 3.5px;
     z-index: 2;
     background: linear-gradient(90deg, var(--accent2), var(--champagne), var(--accent));
     box-shadow: 0 0 10px rgba(234, 181, 125, 0.65);
@@ -1033,79 +1013,61 @@
 
   .ff-num-badge {
     position: absolute;
-    top: 6px;
-    right: 9px;
+    top: 8px;
+    right: 10px;
     z-index: 3;
     pointer-events: none;
-    font-size: .58rem;
+    font-size: .62rem;
     font-weight: 800;
     letter-spacing: .12em;
     color: var(--champagne);
-    background: rgba(16, 8, 4, 0.84);
-    border: 1px solid rgba(234, 181, 125, 0.5);
-    padding: .12rem .42rem;
+    background: rgba(16, 8, 4, 0.86);
+    border: 1px solid rgba(234, 181, 125, 0.55);
+    padding: .15rem .48rem;
     border-radius: 999px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
   }
 
   .ff-parent-slot .ff-edge-shot img {
     width: 100%;
-    height: clamp(94px, 14vh, 124px);
+    height: clamp(140px, 24vh, 215px);
     object-fit: cover;
     display: block;
     transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .ff-friend-slot .ff-edge-shot img {
-    width: 100%;
-    height: clamp(84px, 12.5vh, 110px);
-    object-fit: cover;
-    display: block;
-    transition: transform .48s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .ff-childhood-pair {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .32rem;
-  }
-  .ff-childhood-pair .ff-edge-shot {
-    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-  }
-  .ff-childhood-pair .ff-edge-shot img {
-    height: clamp(84px, 12.5vh, 110px);
   }
   .ff-edge-shot:hover img {
-    transform: scale(1.09);
+    transform: scale(1.08);
   }
 
   .ff-tag {
     display: inline-flex;
     align-items: center;
     gap: .35rem;
-    font-size: .62rem;
+    font-size: .68rem;
     font-weight: 800;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: .14rem;
+    margin-bottom: .22rem;
   }
   .ff-tag::before {
     content: "✦";
-    font-size: .68rem;
+    font-size: .72rem;
     color: var(--champagne);
   }
   .ff-text h3 {
-    font-size: clamp(.86rem, 1.75vh, 1.02rem);
+    font-size: clamp(1.02rem, 2.2vh, 1.32rem);
     background: linear-gradient(90deg, #ffffff, var(--champagne), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     font-weight: 800;
-    margin-bottom: .12rem;
+    margin-bottom: .24rem;
   }
   .ff-text p {
     color: var(--muted);
-    font-size: clamp(.72rem, 1.48vh, .83rem);
-    line-height: 1.35;
+    font-size: clamp(.82rem, 1.75vh, .98rem);
+    line-height: 1.48;
   }
   
   footer { text-align: center; color: var(--muted); font-size: .72rem; padding: .2rem 0 clamp(.4rem, 1.2vh, .8rem); }
@@ -1128,12 +1090,10 @@
     .awards-ticker-container { height: 195px; }
     .schools-columns-grid { grid-template-columns: 1fr; height: auto; overflow-y: visible; }
     .school-card { height: auto; }
-    .ff-stage-clean { padding: .45rem; }
-    .ff-parents-row, .ff-friends-row { grid-template-columns: 1fr; gap: .48rem; }
-    .ff-parent-slot { grid-template-columns: 130px 1fr; gap: .6rem; }
-    .ff-parent-slot .ff-edge-shot img,
-    .ff-friend-slot .ff-edge-shot img,
-    .ff-childhood-pair .ff-edge-shot img { height: clamp(74px, 10vh, 92px); }
+    .ff-stage-clean { min-height: auto; padding: .55rem; }
+    .ff-parents-row { grid-template-columns: 1fr; gap: .65rem; }
+    .ff-parent-slot { grid-template-columns: 135px 1fr; gap: .7rem; padding: .6rem; }
+    .ff-parent-slot .ff-edge-shot img { height: clamp(92px, 14vh, 118px); }
   }
 </style>
 </head>
@@ -1342,7 +1302,7 @@
       </div>
     </section>
 
-    <!-- FAMILY AND FRIENDS -->
+    <!-- FAMILY (MOM & DAD ONLY) -->
     <section id="family">
       <h2>Family and Friends</h2>
       <div class="ff-stage-clean">
@@ -1368,50 +1328,6 @@
               <span class="ff-tag">Father</span>
               <h3>Anchor & Drive</h3>
               <p>Strength & encouragement</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ff-friends-row">
-          <div class="ff-friend-slot">
-            <div class="ff-edge-shot" onclick="openModal('images/IMG_2987.jpg', 'Bestfriend', 'Thank you for always listening, laughing with me, and being there.')" title="Click to zoom in">
-              <span class="ff-num-badge">03</span>
-              <img src="images/IMG_2987.jpg" alt="Rianna with her Bestfriend" style="object-position: 75% 45%;">
-            </div>
-            <div class="ff-text">
-              <span class="ff-tag">Bestfriend</span>
-              <h3>Real Vibes & Honest Talks</h3>
-              <p>Someone I can share random stories, real laughs, and simple moments with.</p>
-            </div>
-          </div>
-
-          <div class="ff-friend-slot">
-            <div class="ff-edge-shot" onclick="openModal('images/Five Friends at a Sparkling Celebration.png', 'Senior highschool friends', 'Thank you for making my senior high school days fun and unforgettable.')" title="Click to zoom in">
-              <span class="ff-num-badge">04</span>
-              <img src="images/Five Friends at a Sparkling Celebration.png" alt="Rianna with her Senior highschool friends" style="object-position: 50% 42%;">
-            </div>
-            <div class="ff-text">
-              <span class="ff-tag">Senior highschool friends</span>
-              <h3>Golden Days Together</h3>
-              <p>My senior high circle who turned ordinary school days into bright memories.</p>
-            </div>
-          </div>
-
-          <div class="ff-friend-slot">
-            <div class="ff-childhood-pair">
-              <div class="ff-edge-shot" onclick="openModal('images/Messenger_creation_5CAFC67C-8220-464E-9279-969440D2623B.jpeg', 'Childhood', 'Thank you for the sweet childhood memories and growing up with me.')" title="Click to zoom in">
-                <span class="ff-num-badge">05A</span>
-                <img src="images/Messenger_creation_5CAFC67C-8220-464E-9279-969440D2623B.jpeg" alt="Rianna with her Childhood friends at the table" style="object-position: 50% 35%;">
-              </div>
-              <div class="ff-edge-shot" onclick="openModal('images/IMG_20261123_213641.jpg', 'Childhood', 'Thank you for the fun adventures, laughs, and childhood friendship we share.')" title="Click to zoom in">
-                <span class="ff-num-badge">05B</span>
-                <img src="images/IMG_20261123_213641.jpg" alt="Rianna with her Childhood friends outdoors" style="object-position: 50% 35%;">
-              </div>
-            </div>
-            <div class="ff-text">
-              <span class="ff-tag">Childhood</span>
-              <h3>Early Days & Fun</h3>
-              <p>Simple growing-up days filled with shared food, smiles, and easy company.</p>
             </div>
           </div>
         </div>
